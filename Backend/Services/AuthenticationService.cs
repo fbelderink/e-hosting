@@ -95,5 +95,11 @@ namespace Backend.Services
         }
 
         public DbSet<Authentication> Authentications { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder){
+            builder.Entity<Authentication>()
+                .HasIndex(p => p.Email)
+                .IsUnique();
+        }
     }
 }

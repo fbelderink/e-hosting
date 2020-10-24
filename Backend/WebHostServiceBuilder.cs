@@ -39,7 +39,7 @@ namespace Backend
 
         #region Config
 
-        public IConfiguration Configuration { get { return LoadConfiguration(); } }
+        public IConfiguration Configuration { get { return configuration ?? LoadConfiguration(); } }
 
         private IConfiguration configuration = null;
 
@@ -83,7 +83,7 @@ namespace Backend
         private void AddEntityFramework(IServiceCollection services){
             services.AddDbContext<AuthenticationService>((opt) => 
             {
-                var conn = "Server=192.168.178.39; Database=authentication;User=admin;Password=admin;";
+                var conn = Configuration.GetConnectionString("AuthenticationConnection");
                 opt.UseMySql(conn);
             });
         }

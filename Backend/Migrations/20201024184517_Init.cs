@@ -22,6 +22,12 @@ namespace Backend.Migrations
                 {
                     table.PrimaryKey("PK_Authentications", x => x.Uid);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Authentications_Email",
+                table: "Authentications",
+                column: "Email",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

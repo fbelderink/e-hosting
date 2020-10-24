@@ -22,8 +22,8 @@ namespace Backend.Services
 
         public string GenerateToken(ClaimsIdentity claimsIdentity, TimeSpan expiresIn) {
             var tokenHandler = new JwtSecurityTokenHandler();
-            
-            var privateKey = Encoding.ASCII.GetBytes(_jwtKeys.PrivateKey);
+
+            var privateKey = Convert.FromBase64String(_jwtKeys.PrivateKey);
 
             using RSA rsa = RSA.Create();
             rsa.ImportRSAPrivateKey(privateKey, out _);
@@ -44,7 +44,7 @@ namespace Backend.Services
         public bool ValidateToken(string token){
             var tokenHandler = new JwtSecurityTokenHandler();
             
-            var publicKey = Encoding.ASCII.GetBytes(_jwtKeys.PublicKey);
+            var publicKey = Convert.FromBase64String(_jwtKeys.PublicKey);
 
             using RSA rsa = RSA.Create();
             rsa.ImportRSAPublicKey(publicKey, out _);

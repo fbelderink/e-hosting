@@ -32,10 +32,10 @@ namespace Backend.Controllers
         public async Task<ActionResult<AuthenticationResponse>> Signup(AuthenticationRequest request)
         {
             var (claimsAccess, claimsRefresh) = await this.authenticationService.CreateAuthentication(request.Email, request.Password, RoleType.User);
-            
+
             var accessToken = this.tokenHandler.GenerateToken(claimsAccess, TimeSpan.FromMinutes(30));
-            var refreshToken = this.tokenHandler.GenerateToken(claimsRefresh, TimeSpan.FromDays(60));
-            
+            var refreshToken = this.tokenHandler.GenerateToken(claimsRefresh, TimeSpan.FromDays(60));;
+
             return new AuthenticationResponse
             {
                 AccessToken = accessToken,

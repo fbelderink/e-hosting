@@ -27,7 +27,7 @@ namespace Backend.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
 
                     b.Property<string>("Password")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -39,6 +39,9 @@ namespace Backend.Migrations
                         .HasColumnType("longblob");
 
                     b.HasKey("Uid");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Authentications");
                 });
