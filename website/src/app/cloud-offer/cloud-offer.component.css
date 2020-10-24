@@ -1,0 +1,85 @@
+.container{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
+    max-width: 320px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn-atc{
+    background-color: #1976d2; /*#149dcc;*/
+    border-radius: 5px;
+    border-color: transparent;
+    color: #FFF;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.d-flex{
+    display: flex!important;
+}
+
+.flex-items-center{
+    align-items: center!important;
+}
+
+.flex-justify-between{
+    justify-content: space-between;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.font-ubuntu {
+    font-family: Ubuntu, sans-serif;
+}
+
+.fs-30{
+    font-size: 30px;
+}
+
+.text-gray {
+    color: #767676;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.p-offer{
+    padding: 2.5rem 1.8rem;
+}
+
+.btn-mb {
+    margin-bottom: 1.5rem;
+}
+
+.mt-16 {
+    margin-top: 16px;
+}
+
+.mb-10{
+    margin-bottom: 10px;
+}
+
+.list-style-none{
+    list-style: none!important;
+}
+
+.feature-available::before{
+    content: url('/assets/scalableVectorGraphics/offer-component/check.svg');
+    display: inline-block;
+    margin-right: 5px;
+}

@@ -1,0 +1,15 @@
+<div class="flex-items-center">
+    <div class="body-start p-body-start mb-40">
+        <div class="d-flex flex-items-center flex-columns text-white center-text">
+            <h1 class="center-text mb-20">V-Server-Hosting</h1>
+            <p class="center-text mb-30 subtitle">Virtualisieren Sie verschiedenste Anwendungen auf Ihrem Online Server.
+            </p>
+            <a class="btn-start center-text">V-Server Lösung wählen</a>
+        </div>
+    </div>
+    <h2 class="center-text mb-40 plr-16">Wählen Sie eine V-Server Lösung</h2>
+    <div class="d-flex flex-items-center offers-container">
+        <app-v-server-offer *ngFor="let offer of offers" [name]="offer.name" [price]="offer.price"
+            [features]="offer.features" class="mlr-10"></app-v-server-offer>
+    </div>
+</div>

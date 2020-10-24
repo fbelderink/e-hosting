@@ -1,0 +1,54 @@
+<div class="flex-items-center">
+    <div class="body-start p-body-start mb-40">
+        <div class="d-flex flex-items-center flex-justify-between flex-column center-text text-white">
+            <h1 class="mb-20">Cloud Speicher</h1>
+            <p class="subtitle mb-20 plr-15">Speichern Sie ihre Daten in unserer sicheren Cloud. <br>Zu
+                100% in Deutschland
+                gehostet & verwaltet!</p>
+            <a class="btn-start">Cloud Lösung wählen</a>
+        </div>
+    </div>
+    <h2 class="center-text mb-40">Wählen Sie eine Cloud Lösung</h2>
+    <div class="d-flex flex-items-center offers-container">
+        <app-cloud-offer *ngFor="let offer of offers" [storage]="offer.storage" [text]="offer.text"
+            [features]="offer.features" [price]="offer.price" class="mlr-10">
+        </app-cloud-offer>
+    </div>
+    <div class="advantages-container d-flex flex-reverse-ac flex-justify-between">
+        <div class="text-format-advantage d-flex flex-column flex-justify-center plr-15">
+            <h3 class="mb-20 font-ubuntu">Serverstandort</h3>
+            <p class="mb-20">Wir hosten unsere Server zu 100% in Deutschland.
+                Durch unsere hohen Sicherheitsstandarts, die wir uns
+                freiwillig auferlegen, können wir Ihnen absolute Sicherheit
+                gewährleisten.</p>
+        </div>
+        <div class="responsive-img-container">
+            <img class="plr-15" src="../../assets/testimg.jpg">
+        </div>
+    </div>
+    <div class="advantages-container d-flex flex-ac flex-justify-between">
+        <div class="text-format-advantage d-flex flex-column flex-justify-center plr-15">
+            <h3 class="mb-20 font-ubuntu">Cloudspeicher im Team</h3>
+            <p>Nutzen Sie unseren Cloudspeicher einfach im Team und fügen Sie
+                weitere Nutzer hinzu. Sie wollen mit ihrer Familie oder ihren
+                Freunden gemeinsam auf ihren Online Speicher zugreifen?
+                Kein Problem! Fügen Sie einfach weitere Nutzer in ihrem
+                privaten Dashboard hinzu.</p>
+        </div>
+        <div class="responsive-img-container">
+            <img class="plr-15" src="../../assets/testimg.jpg">
+        </div>
+    </div>
+    <div class="advantages-container d-flex flex-reverse-ac flex-justify-between">
+        <div class="text-format-advantage d-flex flex-column flex-justify-center plr-15">
+            <h3 class="mb-20 font-ubuntu">Datenmanagement</h3>
+            <p>Mit unserem intelligenten Datenmanagement können Sie
+                ihre Daten ganz einfach und strukturiert in unsere Cloud hochladen
+                und in Ordner unterteilen. Zudem können Sie ihre Ordner auch mit einem
+                Passwort schützen oder ganz einfach mit einem Link teilen.</p>
+        </div>
+        <div class="responsive-img-container">
+            <img class="plr-15" src="../../assets/testimg.jpg">
+        </div>
+    </div>
+</div>

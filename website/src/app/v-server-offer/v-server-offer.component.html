@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="d-flex flex-items-center flex-column p-offer">
+        <p class="font-ubuntu text-uppercase text-gray mb-10">Virtual Server</p>
+        <p class="font-ubuntu fs-30">{{name}}</p>
+        <hr>
+        <p class="font-ubuntu fs-30 mb-20">{{price}}</p>
+        <ul class="list-style-none center-text flex-items-center mb-20">
+            <li *ngFor="let feature of features" class="mb-10">
+                <div>{{feature}}</div>
+            </li>
+        </ul>
+        <button class="btn-atc" type="button">ADD TO CART</button>
+    </div>
+</div>

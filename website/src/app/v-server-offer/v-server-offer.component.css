@@ -1,0 +1,80 @@
+.container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn-atc {
+    background-color: #1976d2; /*#149dcc;*/
+    border-radius: 5px;
+    border-color: transparent;
+    color: #FFF;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.d-flex {
+    display: flex!important;
+}
+
+.flex-items-center {
+    align-items: center!important;
+}
+
+.flex-column {
+    flex-flow: column;
+}
+
+.list-style-none {
+    list-style: none!important;
+}
+
+.font-ubuntu {
+    font-family: Ubuntu, sans-serif;
+}
+
+.fs-30 {
+    font-size: 30px;
+}
+
+.text-gray {
+    color: #767676
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.p-offer {
+    padding: 2.5rem 1.8rem;
+}
+
+hr {
+    display: block;
+    width: 50%;
+    margin: 10px 0px;
+}

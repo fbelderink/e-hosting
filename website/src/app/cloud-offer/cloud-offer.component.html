@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="d-flex flex-items-center flex-column p-offer">
+        <p class="font-ubuntu text-gray text-uppercase mb-10">Cloud Speicher</p>
+        <p class="font-ubuntu fs-30 mb-10">{{storage}}</p>
+        <p [innerHTML]=text class="text-gray mb-10"></p>
+        <p class="mb-10 font-ubuntu fs-30">{{price}}</p>
+        <ul class="list-style-none text-left align-items-center">
+            <li *ngFor="let feature of features" class="feature-available d-flex mb-10">
+                <div>{{feature}}</div>
+            </li>
+        </ul>
+    </div>
+    <button type="button" class="btn-atc btn-mb">ADD TO CART</button>
+</div>

@@ -1,0 +1,49 @@
+<div class="bg-container">
+    <div class="nav-login">
+        <!--<ul class="list-style-none topnav">
+            <li>
+                <a href="#cloud-login"><i class="material-icons-outlined mr-6">cloud</i>Cloud</a>
+            </li>
+            <li>
+                <a href="#account-login"><i class="material-icons mr-6">person</i>Account</a>
+            </li>
+            <li>
+                <a href="#server-login"><i class="material-icons-outlined mr-6">storage</i>Server</a>
+            </li>
+        </ul>-->
+        <mat-tab-group>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <i class="material-icons-outlined mr-6">cloud</i>Cloud
+                </ng-template>
+                <p>Test</p>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <i class="material-icons mr-6">person</i>Account
+                </ng-template>
+                <div id="account-login" class="form-container">
+                    <div class="banner">
+                        <p>Sign In</p>
+                    </div>
+                    <div class="form">
+                        <input matInput [(ngModel)]='email' type="email" id="uemail" placeholder="e-mail"
+                            class="mb-20 p-15">
+                        <input matInput [(ngModel)]='password' type="password" id="upassword" placeholder="passwort"
+                            class="mb-20 p-15">
+                        <input type="submit" value="Login" class="btn-submit">
+                        <a>Passwort vergessen?</a>
+                    </div>
+                    <div class="mb-20 text-white">
+                        <p>Noch nicht registriert? <a>Klick hier!</a></p>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <i class="material-icons-outlined mr-6">storage</i>Server
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
