@@ -48,7 +48,8 @@ namespace Backend.Services
             return (claimsIdentityAccess, claimsIdentityRefresh);
         }
 
-        public async Task<(ClaimsIdentity, ClaimsIdentity, Authentication)> Authenticate(string email, string password){
+        public async Task<(ClaimsIdentity, ClaimsIdentity, Authentication)> Authenticate(string email, string password)
+        {
             var authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Email == email);
             
             if(authentication == null || authentication.Password != HashPassword(password, authentication.Salt)){
@@ -71,6 +72,22 @@ namespace Backend.Services
             var claimsIdentityRefresh = new ClaimsIdentity(claimsRefresh);
 
             return (claimsIdentityAccess, claimsIdentityRefresh, authentication);
+        }
+
+        public async Task ChangePassword(string uid, string oldPassword, string newPassword)
+        {
+            var authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Uid.ToString() == uid);
+            
+            if(authentication == null){
+                throw new Exception("Account does not exist!");
+            }
+
+            if(authentication.Password != HashPassword(oldPassword, authentication.Salt)){
+                throw new Exception("Wrong Password!");
+            }
+
+            authentication.Password = HashPassword(newPassword, authentication.Salt);
+            await this.SaveChangesAsync();
         }
 
         private string HashPassword(string password, byte[] salt)

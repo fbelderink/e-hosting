@@ -31,10 +31,10 @@ namespace Backend.Models
         public RoleType Role { get; set; }
     }
 
-    public partial class ChangePasswordInput 
+    public partial class ChangePasswordRequest
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public string OldPassword { get; set; }
+        public string NewPassword { get; set; }
         public string AccessToken { get; set; }
     }
 

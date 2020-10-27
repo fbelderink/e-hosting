@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Cryptography;
 using Backend.Models;
+using System.Collections.Generic;
 
 namespace Backend.Services 
 {
@@ -65,5 +66,11 @@ namespace Backend.Services
             }
             return true;
         }
+
+        public IEnumerable<Claim> getClaims(string token){
+            var jwtToken = new JwtSecurityToken(token);
+            return jwtToken.Claims;            
+        }
+
     }
 }

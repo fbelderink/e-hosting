@@ -59,7 +59,16 @@ namespace Backend.Controllers
             };
         }
 
-        // DELETE: api/authentication/5
+        [HttpPost("changepw")]
+        public async Task ChangePassword(ChangePasswordRequest request) {
+            string AccessToken = request.AccessToken; 
+            if(this.tokenHandler.ValidateToken(AccessToken)){
+                IEnumerable<Claim> claims = this.tokenHandler.getClaims(AccessToken);
+                string uid = claims.Where(c => c.Type == "Uid").FirstOrDefault().Value;
+                await this.authenticationService.ChangePassword(uid ,request.OldPassword, request.NewPassword);
+            }
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<Authentication>> DeleteAuthentication(Guid id)
         {
