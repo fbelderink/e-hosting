@@ -6,20 +6,21 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { CloudComponent } from './cloud/cloud.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { HomeComponent } from './home/home.component';
-import { CloudOfferComponent } from './cloud-offer/cloud-offer.component';
-import { VServerComponent } from './v-server/v-server.component';
-import { GameServerComponent } from './game-server/game-server.component';
-import { DedicatedServerComponent } from './dedicated-server/dedicated-server.component';
-import { CartComponent } from './cart/cart.component';
+import { LoginComponent } from './pages/login/login.component';
+import { CloudComponent } from './pages/cloud/cloud.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HomeComponent } from './pages/home/home.component';
+import { CloudOfferComponent } from './pages/cloud/cloud-offer/cloud-offer.component';
+import { VServerComponent } from './pages/v-server/v-server.component';
+import { GameServerComponent } from './pages/game-server/game-server.component';
+import { DedicatedServerComponent } from './pages/dedicated-server/dedicated-server.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 import { CookieService } from 'ngx-cookie-service';
-import { VServerOfferComponent } from './v-server-offer/v-server-offer.component';
+import { VServerOfferComponent } from './v-server/v-server-offer/v-server-offer.component';
 import { MatTabsModule } from '@angular/material/tabs'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginCardComponent } from './pages/login/login-card/login-card.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     GameServerComponent,
     DedicatedServerComponent,
     CartComponent,
-    VServerOfferComponent
+    VServerOfferComponent,
+    LoginCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,28 @@
+<div class="bg-container">
+    <div class="nav-login">
+        <mat-tab-group [selectedIndex]="1">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <i class="material-icons-outlined mr-6">cloud</i>Cloud
+                </ng-template>
+                <label>Test</label>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <i class="material-icons mr-6">person</i>Account
+                </ng-template>
+                <div class="form-container">
+                    <app-login-card [title]="'Sign In'" [inputLabel1]="'Email'" [inputLabel2]="'Passwort'"></app-login-card>
+                    <div class="mb-20 text-white">
+                        <p>Noch nicht registriert? <a>Klick hier!</a></p>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <i class="material-icons-outlined mr-6">storage</i>Server
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
