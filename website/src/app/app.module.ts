@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 
@@ -17,7 +17,7 @@ import { DedicatedServerComponent } from './pages/dedicated-server/dedicated-ser
 import { CartComponent } from './pages/cart/cart.component';
 
 import { CookieService } from 'ngx-cookie-service';
-import { VServerOfferComponent } from './v-server/v-server-offer/v-server-offer.component';
+import { VServerOfferComponent } from './pages/v-server/v-server-offer/v-server-offer.component';
 import { MatTabsModule } from '@angular/material/tabs'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginCardComponent } from './pages/login/login-card/login-card.component';
@@ -41,6 +41,7 @@ import { LoginCardComponent } from './pages/login/login-card/login-card.componen
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatTabsModule,

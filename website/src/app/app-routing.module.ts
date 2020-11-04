@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { CloudComponent } from './cloud/cloud.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { HomeComponent } from './home/home.component';
-import { VServerComponent } from './v-server/v-server.component';
-import { GameServerComponent} from './game-server/game-server.component';
-import { DedicatedServerComponent } from './dedicated-server/dedicated-server.component';
-import { CartComponent } from './cart/cart.component';
+import { LoginComponent } from './pages/login/login.component';
+import { CloudComponent } from './pages/cloud/cloud.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HomeComponent } from './pages/home/home.component';
+import { VServerComponent } from './pages/v-server/v-server.component';
+import { GameServerComponent} from './pages/game-server/game-server.component';
+import { DedicatedServerComponent } from './pages/dedicated-server/dedicated-server.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 const routes: Routes = [
   {path: 'cloud', component: CloudComponent},
