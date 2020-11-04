@@ -27,7 +27,6 @@ namespace Backend.Models
     public partial class AuthenticationResponse
     {
         public string AccessToken { get; set; }
-        public string RefreshToken { get; set; }
         public RoleType Role { get; set; }
     }
 

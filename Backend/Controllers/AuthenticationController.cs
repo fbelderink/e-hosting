@@ -1,3 +1,4 @@
+using System.Net.Http;
 using System.Diagnostics;
 using System.Security.Claims;
 using System;
@@ -34,12 +35,15 @@ namespace Backend.Controllers
             var (claimsAccess, claimsRefresh) = await this.authenticationService.CreateAuthentication(request.Email, request.Password, RoleType.User);
 
             var accessToken = this.tokenHandler.GenerateToken(claimsAccess, TimeSpan.FromMinutes(30));
-            var refreshToken = this.tokenHandler.GenerateToken(claimsRefresh, TimeSpan.FromDays(60));;
-
+            var refreshToken = this.tokenHandler.GenerateToken(claimsRefresh, TimeSpan.FromDays(60));
+                        
+            var opt  = new CookieOptions();
+            opt.HttpOnly = true;
+            opt.Path = "/refreshToken";
+            Response.Cookies.Append("RefreshToken", refreshToken, opt);
             return new AuthenticationResponse
             {
                 AccessToken = accessToken,
-                RefreshToken = refreshToken,
                 Role = RoleType.User
             };
         }
@@ -51,10 +55,13 @@ namespace Backend.Controllers
             var accessToken = this.tokenHandler.GenerateToken(claimsAccess, TimeSpan.FromMinutes(30));
             var refreshToken = this.tokenHandler.GenerateToken(claimsRefresh, TimeSpan.FromDays(60));
 
+            var opt  = new CookieOptions();
+            opt.HttpOnly = true;
+            opt.Path = "/refreshToken";
+            Response.Cookies.Append("RefreshToken", refreshToken, opt);
             return new AuthenticationResponse
             {
                 AccessToken = accessToken,
-                RefreshToken = refreshToken,
                 Role = authentication.Role
             };
         }
