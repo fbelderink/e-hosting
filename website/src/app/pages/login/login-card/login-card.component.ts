@@ -38,14 +38,14 @@ export class LoginCardComponent implements OnInit {
     }
     this.showError = false;
 
-    this.authenticationService.login({email : "123", password: ""})
+    this.authenticationService.login({email : this.loginForm.get('email').value, password: this.loginForm.get('password').value})
     .subscribe(
       data => {
-        console.log("login")
+        console.log("login");
+        console.log(data);
       },
       error => {
-        console.log(error);
-        this.error = error.statusText; //Email oder Passwort ist falsch!
+        this.error = error["error"]["Message"]; //Email oder Passwort ist falsch!
         this.showError = true;
       } 
     )
