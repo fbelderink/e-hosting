@@ -12,7 +12,7 @@ using Backend.Models;
 namespace Backend
 {
     public class WebHostServiceBuilder
-    {   
+    {
         private readonly string[] args;
         public WebHostServiceBuilder(params string[] args)
         {
@@ -20,7 +20,8 @@ namespace Backend
             HandleArguments(args);
         }
 
-        public IWebHost Build() {
+        public IWebHost Build()
+        {
             WebHostBuilder builder = new WebHostBuilder();
             var host = builder
                 .UseConfiguration(Configuration)
@@ -43,7 +44,8 @@ namespace Backend
 
         private IConfiguration configuration = null;
 
-        private IConfiguration LoadConfiguration(){
+        private IConfiguration LoadConfiguration()
+        {
             configuration = new ConfigurationBuilder().AddJsonFile(ConfigPath, false, true).Build();
             return configuration;
         }
@@ -57,31 +59,54 @@ namespace Backend
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            app.Use(async (context, next) =>
+            {
+                Console.WriteLine($"[{context.Connection.RemoteIpAddress}:{context.Connection.RemotePort}] | {context.Request.Path}");
+                await next.Invoke();
+            });
+            //app.UseHttpsRedirection(); !IMPORTANT
+
+            app.UseMiddleware(typeof(ExceptionHandlingMiddleware));
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseCors("AllowSpecificOrigin");
+            
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
 
         #region Dependency Injections
 
-        private void AddServices(WebHostBuilderContext context, IServiceCollection services){
+        private void AddServices(WebHostBuilderContext context, IServiceCollection services)
+        {
             services.AddControllers();
 
             services.AddScoped<TokenHandler>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin", policy =>
+                {
+                    var corsUrls = Configuration.GetSection("CorsUrls").Get<string[]>();
+                    policy.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+            });
 
             BindModels(services);
             AddEntityFramework(services);
         }
 
-        private void BindModels(IServiceCollection services){
+        private void BindModels(IServiceCollection services)
+        {
             services.Configure<JwtKeys>(Configuration.GetSection("JwtKeys"));
         }
 
-        private void AddEntityFramework(IServiceCollection services){
-            services.AddDbContext<AuthenticationService>((opt) => 
+        private void AddEntityFramework(IServiceCollection services)
+        {
+            services.AddDbContext<AuthenticationService>((opt) =>
             {
                 var conn = Configuration.GetConnectionString("AuthenticationConnection");
                 opt.UseMySql(conn);
@@ -91,7 +116,8 @@ namespace Backend
         #endregion
 
         #region Handle Arguments
-        public void HandleArguments(params string[] args){
+        public void HandleArguments(params string[] args)
+        {
             ConfigPath = System.IO.Path.Combine("",
             Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development" ? "appsettings.Development.json" : "appsettings.json");
         }
@@ -108,10 +134,11 @@ namespace Backend
             }
             return configPathDefault;
         }
-        
+
         #endregion
 
-        private void PostBuild(IWebHost webHost) {
+        private void PostBuild(IWebHost webHost)
+        {
             AuthenticationService authenticationService = webHost.Services.GetRequiredService<AuthenticationService>();
             authenticationService.Database.Migrate();
         }

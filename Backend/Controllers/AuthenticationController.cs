@@ -12,10 +12,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Backend.Models;
 using Backend.Services;
+using Microsoft.AspNetCore.Cors;
 
 namespace Backend.Controllers
 {
     [Route("api/")]
+    [EnableCors("AllowSpecificOrigin")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {

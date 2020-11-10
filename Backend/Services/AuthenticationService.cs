@@ -44,7 +44,6 @@ namespace Backend.Services
 
             var claimsIdentityAccess = new ClaimsIdentity(claimsAccess);
             var claimsIdentityRefresh = new ClaimsIdentity(claimsRefresh);
-
             return (claimsIdentityAccess, claimsIdentityRefresh);
         }
 
@@ -53,7 +52,7 @@ namespace Backend.Services
             var authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Email == email);
             
             if(authentication == null || authentication.Password != HashPassword(password, authentication.Salt)){
-                throw new Exception("Username or password wrong!");
+                throw new ApiException(401, "Username or password wrong!");
             }
 
             var claimsAccess = new Claim[]
@@ -79,11 +78,11 @@ namespace Backend.Services
             var authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Uid.ToString() == uid);
             
             if(authentication == null){
-                throw new Exception("Account does not exist!");
+                throw new ApiException(404, "Account does not exist!");
             }
 
             if(authentication.Password != HashPassword(oldPassword, authentication.Salt)){
-                throw new Exception("Wrong Password!");
+                throw new ApiException(401, "Wrong Password!");
             }
 
             authentication.Password = HashPassword(newPassword, authentication.Salt);
