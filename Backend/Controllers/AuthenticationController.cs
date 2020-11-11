@@ -41,7 +41,9 @@ namespace Backend.Controllers
                         
             var opt  = new CookieOptions();
             opt.HttpOnly = true;
-            opt.Path = "/refreshToken";
+            opt.IsEssential = true;
+            opt.MaxAge = TimeSpan.FromDays(60);
+            opt.SameSite = SameSiteMode.None;
             Response.Cookies.Append("RefreshToken", refreshToken, opt);
             return new AuthenticationResponse
             {
@@ -59,7 +61,9 @@ namespace Backend.Controllers
 
             var opt  = new CookieOptions();
             opt.HttpOnly = true;
-            opt.Path = "/refreshToken";
+            opt.IsEssential = true;
+            opt.MaxAge = TimeSpan.FromDays(60);
+            opt.SameSite = SameSiteMode.None;
             Response.Cookies.Append("RefreshToken", refreshToken, opt);
             return new AuthenticationResponse
             {

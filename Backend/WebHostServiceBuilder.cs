@@ -89,9 +89,11 @@ namespace Backend
                 options.AddPolicy("AllowSpecificOrigin", policy =>
                 {
                     var corsUrls = Configuration.GetSection("CorsUrls").Get<string[]>();
-                    policy.AllowAnyOrigin()
+                    Console.WriteLine(corsUrls[0]);
+                    policy.WithOrigins("http://127.0.0.1:4200")
                     .AllowAnyHeader()
-                    .AllowAnyMethod();
+                    .AllowAnyMethod()
+                    .AllowCredentials();
                 });
             });
 
