@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef, Renderer2, HostListener } from '@angu
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { Router, RouterEvent } from '@angular/router';
+import { NavigationItem } from './pages/navigation/navigation-item/navigation-item.component';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,15 @@ import { Router, RouterEvent } from '@angular/router';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'e-hosting';
+  public title = 'e-hosting';
 
-  expand_bs = "expand_more"
-  expand_server = "expand_more"
+  public expandBs = "expand_more"
+  public expandServer = "expand_more"
+
+  public sideNavOpen : boolean;
+
+  public serverItems : NavigationItem[];
+  public bsItems : NavigationItem[];
 
   @ViewChild('servernav') servernav: ElementRef;
   @ViewChild('serverdd') serverdd: ElementRef;
@@ -23,7 +29,18 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.breakpointObserver
+    this.serverItems = [
+      {displayName: "V-Server", iconName: "dns", routerLink: "/v-server"},
+      {displayName: "Game Server", iconName: "sports_esports", routerLink: "/game-server"},
+      {displayName: "Dedizierte Server", iconName: "corporate_fare", routerLink: "/dedicated-server"},
+    ];
+
+    this.bsItems = [
+      {displayName: "Cloud", iconName: "cloud", routerLink: null},
+      {displayName: "Dedizierte Server", iconName: "corporate_fare", routerLink: null},
+    ]
+
+    /*this.breakpointObserver
       .observe(['(min-width: 1200px'])
       .subscribe((state: BreakpointState) => {
         this.closeMenuBS();
@@ -31,10 +48,10 @@ export class AppComponent {
       })
 
     this.renderer.listen('window', 'click', (e: Event) => {
-      if (this.servernav.nativeElement.contains(e.target) && this.expand_server == "expand_more") {
+      if (this.servernav.nativeElement.contains(e.target) && this.expandServer == "expand_more") {
         this.openMenuServer();
       }
-      else if (!this.serverdd.nativeElement.contains(e.target) && this.expand_server == "expand_less") {
+      else if (!this.serverdd.nativeElement.contains(e.target) && this.expandServer == "expand_less") {
         if (window.innerWidth >= 1200) {
           this.closeMenuServer();
         } else if (this.servernav.nativeElement.contains(e.target)) {
@@ -42,10 +59,10 @@ export class AppComponent {
         }
       }
 
-      if (this.bsnav.nativeElement.contains(e.target) && this.expand_bs == "expand_more") {
+      if (this.bsnav.nativeElement.contains(e.target) && this.expandBs == "expand_more") {
         this.openMenuBS();
       }
-      else if (!this.bsdd.nativeElement.contains(e.target) && this.expand_bs == "expand_less") {
+      else if (!this.bsdd.nativeElement.contains(e.target) && this.expandBs == "expand_less") {
         if (window.innerWidth >= 1200) {
           this.closeMenuBS();
         } else if (this.bsnav.nativeElement.contains(e.target)) {
@@ -68,35 +85,37 @@ export class AppComponent {
       this.closeSideNav();
       this.closeMenuServer();
       this.closeMenuBS();
-    });
+    }); */
   }
 
   openSideNav() {
     document.getElementById("nav-menu").classList.add("d-block")
+    this.sideNavOpen = true;
   }
 
   closeSideNav() {
     document.getElementById("nav-menu").classList.remove("d-block")
+    this.sideNavOpen = false;
   }
 
-  openMenuBS() {
+ /*  openMenuBS() {
     document.getElementById("dropdown-bs").classList.remove("d-none")
-    this.expand_bs = "expand_less"
+    this.expandBs = "expand_less"
   }
 
   closeMenuBS() {
     document.getElementById("dropdown-bs").classList.add("d-none")
-    this.expand_bs = "expand_more"
+    this.expandBs = "expand_more"
   }
 
   openMenuServer() {
     document.getElementById("dropdown-server").classList.remove("d-none")
-    this.expand_server = "expand_less"
+    this.expandServer = "expand_less"
   }
 
   closeMenuServer() {
     document.getElementById("dropdown-server").classList.add("d-none")
-    this.expand_server = "expand_more"
-  }
+    this.expandServer = "expand_more"
+  } */
 
 }

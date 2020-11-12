@@ -8,6 +8,8 @@ import { VServerComponent } from './pages/v-server/v-server.component';
 import { GameServerComponent} from './pages/game-server/game-server.component';
 import { DedicatedServerComponent } from './pages/dedicated-server/dedicated-server.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { AccountComponent } from './pages/account/account.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 const routes: Routes = [
   {path: 'cloud', component: CloudComponent},
@@ -16,6 +18,8 @@ const routes: Routes = [
   {path: 'game-server', component: GameServerComponent},
   {path: 'dedicated-server', component: DedicatedServerComponent},
   {path: 'cart', component: CartComponent},
+  {path: 'account', component: AccountComponent},
+  {path: 'settings', component: SettingsComponent},
   {path: '', component: HomeComponent},
   {path: '**', component: NotFoundComponent},
 ];

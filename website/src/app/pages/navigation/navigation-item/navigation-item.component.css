@@ -1,0 +1,38 @@
+.ptb-14 {
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+@media (min-width: 1280px) {
+    .ptb-responsive {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-items-center {
+    align-items: center;
+}
+
+.tsop-hover {
+    transition: opacity .4s;
+  }
+  
+.tsop-hover:hover {
+    opacity: 0.75;
+}
+
+.mr-6 {
+    margin-right: 6px;
+}
+
+a {
+    font-family: Roboto;
+    font-size: 20px!important;
+    text-decoration: none;
+    color: inherit;
+}

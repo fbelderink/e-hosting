@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '@app/services/authentication.service';
-import { AuthenticationRequest } from '@app/models/Authentication';
 
 @Component({
   selector: 'app-login-card',
@@ -19,7 +19,8 @@ export class LoginCardComponent implements OnInit {
   public loginForm : FormGroup;
 
   constructor(private readonly authenticationService : AuthenticationService,
-              private readonly formBuilder : FormBuilder) { }
+              private readonly formBuilder : FormBuilder,
+              private readonly router : Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -41,9 +42,9 @@ export class LoginCardComponent implements OnInit {
     this.authenticationService.login({ email : this.loginForm.get('email').value, password: this.loginForm.get('password').value })
     .subscribe(
       data => {
-        console.log("login");
-        console.log(data);
         this.loginForm.reset();
+        localStorage.setItem('accessToken', data['accessToken']);
+        this.router.navigate(['/account']);
       },
       error => {
         this.error = error["error"]["Message"]; //Email oder Passwort ist falsch!

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
-import { LayoutModule } from '@angular/cdk/layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +20,16 @@ import { VServerOfferComponent } from './pages/v-server/v-server-offer/v-server-
 import { MatTabsModule } from '@angular/material/tabs'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginCardComponent } from './pages/login/login-card/login-card.component';
+import { AccountComponent } from './pages/account/account.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { AccountSettingsComponent } from './pages/settings/account-settings/account-settings.component';
+import { SecuritySettingsComponent } from './pages/settings/security-settings/security-settings.component';
+import { BillingSettingsComponent } from './pages/settings/billing-settings/billing-settings.component';
+import { SettingsNavigationComponent } from './pages/settings/settings-navigation/settings-navigation.component';
+import { NavigationComponent } from './pages/navigation/navigation.component';
+import { NavigationItemComponent } from './pages/navigation/navigation-item/navigation-item.component';
+import { NavigationDropdownItemComponent } from './pages/navigation/navigation-dropdown-item/navigation-dropdown-item.component';
+import { NavigationDropdownComponent } from './pages/navigation/navigation-dropdown-item/navigation-dropdown/navigation-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +44,17 @@ import { LoginCardComponent } from './pages/login/login-card/login-card.componen
     DedicatedServerComponent,
     CartComponent,
     VServerOfferComponent,
-    LoginCardComponent
+    LoginCardComponent,
+    AccountComponent,
+    SettingsComponent,
+    AccountSettingsComponent,
+    SecuritySettingsComponent,
+    BillingSettingsComponent,
+    SettingsNavigationComponent,
+    NavigationComponent,
+    NavigationItemComponent,
+    NavigationDropdownItemComponent,
+    NavigationDropdownComponent
   ],
   imports: [
     BrowserModule,

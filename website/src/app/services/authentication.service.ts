@@ -1,4 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
+import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthenticationRequest, AuthenticationResponse, ChangePasswordRequest } from '../models/Authentication';
@@ -17,6 +18,10 @@ export class AuthenticationService {
 
     public login(req : AuthenticationRequest) : Observable<AuthenticationResponse> {
         return this.rest.post<AuthenticationResponse>("/login", req)
+    }
+
+    public refreshAccessToken() : Observable<AuthenticationResponse>{
+        return this.rest.post<AuthenticationResponse>("/refreshAccessToken", null);
     }
 
     public changePassword(req : ChangePasswordRequest){

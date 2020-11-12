@@ -12,68 +12,32 @@
               class="material-icons-outlined mr-6">shopping_cart</i>
             <span class="d-none cart-with-text">Einkaufswagen</span>
           </a>
-          <div class="d-flex flex-items-center ml-cart-responsive cursor-pointer" (click)="openSideNav()"><i
-              class="material-icons">menu</i></div>
+          <div class="d-flex flex-items-center ml-cart-responsive cursor-pointer"
+            (click)="this.sideNavOpen ? closeSideNav() : openSideNav()"><i class="material-icons">menu</i></div>
         </div>
       </div>
     </div>
     <div id="nav-menu" class="mobile-nav desktop-nav m-side-nav">
-      <i class="material-icons btn-close cursor-pointer d-none-nav tsop-hover" (click)="closeSideNav()">clear</i>
+      <!--<i class="material-icons btn-close cursor-pointer d-none-nav tsop-hover" (click)="closeSideNav()">clear</i>-->
       <nav class="mr-navmenu mr-navmenu-responsive">
         <ul class="list-style-none d-flex-nav text-white-nav flex-items-center">
           <!--<li class="mr-16">
             <a class="ptb-14 ptb-responsive d-flex flex-items-center">Home</a>
           </li>-->
           <li class="mr-16">
-            <a routerLink="/cloud" routerLinkActive="active"
-              class="ptb-14 ptb-responsive d-flex flex-items-center tsop-hover"><i
-                class="material-icons-outlined mr-6">cloud</i>Cloud</a>
+            <app-navigation-item [displayName]="'Cloud'" [iconName]="'cloud'" [routerLink]="'/cloud'">
+            </app-navigation-item>
           </li>
           <li class="mr-16">
-            <a class="ptb-14 ptb-responsive d-flex flex-items-center cursor-pointer tsop-hover" #servernav><i
-                class="material-icons-outlined mr-6">storage</i> Server <i
-                class="material-icons">{{expand_server}}</i></a>
-            <div id="dropdown-server" class="dropdown-menu d-none plr-30 pb-30 pt-6" #serverdd>
-              <ul class="list-style-none">
-                <li>
-                  <a routerLink="/v-server" routerLinkActive="active"
-                    class="d-flex flex-items-center mt-16 tsop-hover"><i
-                      class="material-icons-outlined mr-6">dns</i>V-Server</a>
-                </li>
-                <li>
-                  <a routerLink="/game-server" routerLinkActive="active"
-                    class="d-flex flex-items-center mt-16 tsop-hover"><i
-                      class="material-icons-outlined mr-6">sports_esports</i>Game Server</a>
-                </li>
-                <li>
-                  <a routerLink="/dedicated-server" routerLinkActive="active"
-                    class="d-flex flex-items-center mt-16 tsop-hover"><i
-                      class="material-icons-outlined mr-6">corporate_fare</i>Dedizierte Server</a>
-                </li>
-              </ul>
-            </div>
+            <app-navigation-dropdown-item [displayName]="'Server'" [iconName]="'storage'" [navigationItems]="this.serverItems">
+            </app-navigation-dropdown-item>
           </li>
           <li class="mr-16">
-            <a class="ptb-14 ptb-responsive d-flex flex-items-center cursor-pointer tsop-hover" #bsnav><i
-                class="material-icons-outlined mr-6">business</i> Business
-              Solutions <i class="material-icons">{{expand_bs}}</i></a>
-            <div id="dropdown-bs" class="dropdown-menu d-none pt-6 plr-30 pb-30" #bsdd>
-              <ul class="list-style-none">
-                <li>
-                  <a class="d-flex flex-items-center mt-16 tsop-hover"><i
-                      class="material-icons-outlined mr-6">cloud</i>Cloud</a>
-                </li>
-                <li>
-                  <a class="d-flex flex-items-center mt-16 tsop-hover"><i
-                      class="material-icons-outlined mr-6">corporate_fare</i>Dedizierte Server</a>
-                </li>
-              </ul>
-            </div>
+            <app-navigation-dropdown-item [displayName]="'Business Solutions'" [iconName]="'business'" [navigationItems]="this.bsItems">
+            </app-navigation-dropdown-item>
           </li>
           <li class="mr-16">
-            <a routerLink="/news" routerLinkActive="active"
-              class="ptb-14 ptb-responsive d-flex flex-items-center cursor-pointer tsop-hover"><i
-                class="material-icons-outlined mr-6">today</i> News</a>
+            <app-navigation-item [displayName]="'News'" [iconName]="'today'" [routerLink]="'/news'"></app-navigation-item>
           </li>
         </ul>
       </nav>

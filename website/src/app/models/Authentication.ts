@@ -4,8 +4,7 @@ export interface AuthenticationRequest {
 }
 
 export interface AuthenticationResponse {
-    accessToken : string,
-    roleType : RoleType,
+    accessToken : string
 }
 
 export interface ChangePasswordRequest {
