@@ -1,10 +1,5 @@
-﻿using System.Data;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Models
 {
@@ -27,7 +22,6 @@ namespace Backend.Models
     public partial class AuthenticationResponse
     {
         public string AccessToken { get; set; }
-        public RoleType Role { get; set; }
     }
 
     public partial class ChangePasswordRequest

@@ -1,3 +1,9 @@
+using System.ComponentModel;
+using System.Threading;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Net.Cache;
+using System.Net;
 using System.Net.Http;
 using System.Diagnostics;
 using System.Security.Claims;
@@ -42,13 +48,12 @@ namespace Backend.Controllers
             var opt  = new CookieOptions();
             opt.HttpOnly = true;
             opt.IsEssential = true;
+            opt.SameSite = SameSiteMode.Strict;
             opt.MaxAge = TimeSpan.FromDays(60);
-            opt.SameSite = SameSiteMode.None;
             Response.Cookies.Append("RefreshToken", refreshToken, opt);
             return new AuthenticationResponse
             {
-                AccessToken = accessToken,
-                Role = RoleType.User
+                AccessToken = accessToken
             };
         }
 
@@ -62,24 +67,45 @@ namespace Backend.Controllers
             var opt  = new CookieOptions();
             opt.HttpOnly = true;
             opt.IsEssential = true;
+            opt.SameSite = SameSiteMode.Strict;
             opt.MaxAge = TimeSpan.FromDays(60);
-            opt.SameSite = SameSiteMode.None;
             Response.Cookies.Append("RefreshToken", refreshToken, opt);
             return new AuthenticationResponse
             {
-                AccessToken = accessToken,
-                Role = authentication.Role
+                AccessToken = accessToken
             };
         }
 
         [HttpPost("changepw")]
         public async Task ChangePassword(ChangePasswordRequest request) {
             string AccessToken = request.AccessToken; 
-            if(this.tokenHandler.ValidateToken(AccessToken)){
-                IEnumerable<Claim> claims = this.tokenHandler.getClaims(AccessToken);
-                string uid = claims.Where(c => c.Type == "Uid").FirstOrDefault().Value;
-                await this.authenticationService.ChangePassword(uid ,request.OldPassword, request.NewPassword);
+            if(!this.tokenHandler.ValidateToken(AccessToken)){
+                throw new ApiException(401, "Invalid RefreshToken");
             }
+            IEnumerable<Claim> claims = this.tokenHandler.getClaims(AccessToken);
+            string uid = claims.Where(c => c.Type == "Uid").FirstOrDefault().Value;
+            await this.authenticationService.ChangePassword(uid ,request.OldPassword, request.NewPassword);
+        }
+
+        [HttpPost("refreshAccessToken")]
+        public async Task<ActionResult<AuthenticationResponse>> GetRefreshToken() {
+            string RefreshToken = Request.Cookies["RefreshToken"];
+            
+            if(!this.tokenHandler.ValidateToken(RefreshToken)){
+                throw new ApiException(401, "Invalid RefreshToken");
+            }
+            
+            IEnumerable<Claim> claims = this.tokenHandler.getClaims(RefreshToken);
+            string uid = claims.Where(c => c.Type == "Uid").FirstOrDefault().Value;
+            string count = claims.Where(c => c.Type == "Count").FirstOrDefault().Value; 
+
+            var claimsAccess = await this.authenticationService.RefreshAccessToken(uid, count);
+            var accessToken = this.tokenHandler.GenerateToken(claimsAccess, TimeSpan.FromMinutes(30));
+
+            return new AuthenticationResponse
+            {
+                AccessToken = accessToken
+            };
         }
 
         [HttpDelete("{id}")]

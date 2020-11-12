@@ -17,7 +17,7 @@ namespace Backend.Services
             var guid = Guid.NewGuid();
             var salt = GenerateSalt();
 
-            var newAuthentiation = new Authentication
+            Authentication newAuthentiation = new Authentication
             {
                 Uid = guid,
                 Email = Email,
@@ -49,7 +49,7 @@ namespace Backend.Services
 
         public async Task<(ClaimsIdentity, ClaimsIdentity, Authentication)> Authenticate(string email, string password)
         {
-            var authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Email == email);
+            Authentication authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Email == email);
             
             if(authentication == null || authentication.Password != HashPassword(password, authentication.Salt)){
                 throw new ApiException(401, "Username or password wrong!");
@@ -75,7 +75,7 @@ namespace Backend.Services
 
         public async Task ChangePassword(string uid, string oldPassword, string newPassword)
         {
-            var authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Uid.ToString() == uid);
+            Authentication authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Uid.ToString() == uid);
             
             if(authentication == null){
                 throw new ApiException(404, "Account does not exist!");
@@ -87,6 +87,23 @@ namespace Backend.Services
 
             authentication.Password = HashPassword(newPassword, authentication.Salt);
             await this.SaveChangesAsync();
+        }
+
+        public async Task<ClaimsIdentity> RefreshAccessToken(string uid, string count)
+        {
+            Authentication authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Uid.ToString() == uid);
+
+            if(authentication == null || !authentication.Count.ToString().Equals(count)){
+                throw new ApiException(404, "Invalid Token");
+            }
+
+            var claims = new Claim[]
+            {
+                new Claim("Uid", authentication.Uid.ToString()),
+                new Claim("Role", authentication.Role.ToString()),
+            };
+            
+            return new ClaimsIdentity(claims);
         }
 
         private string HashPassword(string password, byte[] salt)
