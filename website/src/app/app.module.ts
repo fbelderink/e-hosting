@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +17,7 @@ import { CartComponent } from './pages/cart/cart.component';
 
 import { CookieService } from 'ngx-cookie-service';
 import { VServerOfferComponent } from './pages/v-server/v-server-offer/v-server-offer.component';
-import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginCardComponent } from './pages/login/login-card/login-card.component';
 import { AccountComponent } from './pages/account/account.component';
@@ -29,7 +29,10 @@ import { SettingsNavigationComponent } from './pages/settings/settings-navigatio
 import { NavigationComponent } from './pages/navigation/navigation.component';
 import { NavigationItemComponent } from './pages/navigation/navigation-item/navigation-item.component';
 import { NavigationDropdownItemComponent } from './pages/navigation/navigation-dropdown-item/navigation-dropdown-item.component';
-import { NavigationDropdownComponent } from './pages/navigation/navigation-dropdown-item/navigation-dropdown/navigation-dropdown.component';
+import { NavigationDropdownMenuComponent } from './pages/navigation/navigation-dropdown-item/navigation-dropdown-menu/navigation-dropdown-menu.component';
+
+import { TokenUpdateService } from './services/token-update.service';
+import { ClickOutsideDirective } from './directives/click-outside-directive';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,8 @@ import { NavigationDropdownComponent } from './pages/navigation/navigation-dropd
     NavigationComponent,
     NavigationItemComponent,
     NavigationDropdownItemComponent,
-    NavigationDropdownComponent
+    NavigationDropdownMenuComponent,
+    ClickOutsideDirective,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,10 @@ import { NavigationDropdownComponent } from './pages/navigation/navigation-dropd
     BrowserAnimationsModule,
     MatTabsModule,
   ],
-  providers: [CookieService],
+  providers: [
+    CookieService,
+    [{ provide: HTTP_INTERCEPTORS, useClass: TokenUpdateService, multi: true}],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

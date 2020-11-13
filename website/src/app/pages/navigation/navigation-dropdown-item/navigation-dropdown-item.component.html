@@ -3,5 +3,6 @@
      {{ this.displayName }} 
      <i class="material-icons">{{this.isExpanded ? "expand_less" : "expand_more"}}</i>
 </a>
-<app-navigation-dropdown [navigationItems]="this.navigationItems" [isExpanded]="this.isExpanded">
-</app-navigation-dropdown>
+<app-navigation-dropdown-menu 
+[navigationItems]="this.navigationItems" [isExpanded]="this.isExpanded">
+</app-navigation-dropdown-menu>

@@ -1,1 +1,42 @@
-<p>navigation works!</p>
+<!--Desktop Navbar + Mobile Slider-->
+<nav class="mr-navmenu mr-navmenu-responsive">
+    <ul class="list-style-none d-flex-nav text-white-nav flex-items-center">
+        <!--<li class="mr-16">
+            <a class="ptb-14 ptb-responsive d-flex flex-items-center">Home</a>
+          </li>-->
+        <li class="mr-16">
+            <app-navigation-item 
+            [displayName]="'Cloud'" [iconName]="'cloud'" [routerLink]="'/cloud'">
+            </app-navigation-item>
+        </li>
+        <li class="mr-16">
+            <app-navigation-dropdown-item [displayName]="'Server'" [iconName]="'storage'"
+                [navigationItems]="this.serverItems" [(isExpanded)]="this.serverItemIsExpanded"
+                (clickOutside)="onClickOutsideServer()">
+            </app-navigation-dropdown-item>
+        </li>
+        <li class="mr-16">
+            <app-navigation-dropdown-item [displayName]="'Business Solutions'" [iconName]="'business'"
+                [navigationItems]="this.bsItems" [(isExpanded)]="this.bsItemIsExpanded"
+                (clickOutside)="onClickOutsideBs()">
+            </app-navigation-dropdown-item>
+        </li>
+        <li class="mr-16">
+            <app-navigation-item 
+            [displayName]="'News'" [iconName]="'today'" [routerLink]="'/news'">
+            </app-navigation-item>
+        </li>
+    </ul>
+</nav>
+
+<!--Login and Cart for Desktop and Slider-->
+<div class="d-flex-nav flex-items-center text-white-nav mr-navmenu mr-navmenu-responsive">
+    <app-navigation-item 
+    [displayName]="'Login'" [iconName]="'person'" 
+    [routerLink]="'/login'" class="fw-lighter mr-16">
+    </app-navigation-item>
+    <app-navigation-item 
+    [displayName]="'Einkaufswagen'" [iconName]="'shopping_cart'" 
+    routerLink="'/cart'" class="fw-lighter">
+    </app-navigation-item>
+</div>

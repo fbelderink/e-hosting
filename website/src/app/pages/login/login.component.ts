@@ -1,10 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import * as bcrypt from 'bcryptjs';
-import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '@app/services/authentication.service';
 
@@ -25,26 +20,16 @@ export class LoginComponent implements OnInit {
     ) {}
 
   async ngOnInit() {
-    var accessToken = localStorage.getItem('accessToken');
-    if (!accessToken) {
-      this.authenticationService.refreshAccessToken()
-        .subscribe(
-          data => {
-            localStorage.setItem("accessToken", data["accessToken"]);
-            this.router.navigate(['account']);
-          },
-          _ => {
-            this.loaded = true;
-          }
-        );
-    }else{
-      //TODO check if token is valid
-      this.router.navigate(['account']);
-    }
-  }
-
-  async onUserLogin() {
-
+    this.authenticationService.refreshAccessToken()
+      .subscribe(
+        data => {
+          localStorage.setItem("accessToken", data["accessToken"]);
+          this.router.navigate(['account']);
+        },
+        _ => {
+          this.loaded = true;
+        }
+      );
   }
 
   isValidEmail(email) {
