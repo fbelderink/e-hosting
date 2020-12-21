@@ -144,6 +144,7 @@ namespace Backend
         private void PostBuild(IWebHost webHost)
         {
             AuthenticationService authenticationService = webHost.Services.GetRequiredService<AuthenticationService>();
+            authenticationService.Database.EnsureCreated();
             authenticationService.Database.Migrate();
         }
     }
