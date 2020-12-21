@@ -8,12 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class SettingsNavigationComponent implements OnInit {
 
   public items = [
-    { iconName: "dns", displayName: "Profil" },
-    { iconName: "dns", displayName: "Konto" },
-    { iconName: "dns", displayName: "Sicherheit" }, 
-    { iconName: "dns", displayName: "Adressen" },
-    { iconName: "dns", displayName: "Zahlungen" }, 
-    { iconName: "dns", displayName: "Sicherheitsprotokoll" }
+    { iconName: "account_circle", displayName: "Konto", routerLink: "/settings/account"},
+    { iconName: "vpn_key", displayName: "Sicherheit", routerLink: "/settings/security"}, 
+    { iconName: "home", displayName: "Adressen", routerLink: "/settings/addresses"},
+    { iconName: "payment", displayName: "Zahlungen", routerLink: "/settings/billing"}, 
+    { iconName: "text_snippet", displayName: "Sicherheitsprotokoll", routerLink: "/settings/security-log"}
   ];
   
   constructor() {

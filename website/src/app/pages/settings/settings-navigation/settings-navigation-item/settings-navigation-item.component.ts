@@ -9,12 +9,14 @@ export class SettingsNavigationItemComponent implements OnInit {
 
   @Input() iconName : string;
   @Input() displayName : string;
+  @Input() routerLink : string;
 
   constructor() { }
 
   ngOnInit(): void {
     console.log(this.iconName);
     console.log(this.displayName);
+    console.log(this.routerLink);
   }
 
 }

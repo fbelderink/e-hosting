@@ -6,19 +6,19 @@
     z-index: -10;
 }
 
-@media (min-width:1280px){
+@media (min-width:1280px) {
     .banner-background {
         height: 72px;
     }
 }
 
-.container{
-    min-height: 100vh;
-    padding-top: 100px;
+.container {
+    max-width: 1280px;
+    margin: auto;
+    padding: 100px 30px 0px;
     display: flex;
-    flex-flow: column;
-    text-align: center;
-    align-items: center;
+    flex-flow: row;
+    align-items: flex-start;
     justify-content: start;
     align-self: center;
 }

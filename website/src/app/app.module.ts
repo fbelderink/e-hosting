@@ -34,6 +34,8 @@ import { NavigationDropdownMenuComponent } from './pages/navigation/navigation-d
 import { TokenUpdateService } from './services/token-update.service';
 import { ClickOutsideDirective } from './directives/click-outside-directive';
 import { SettingsNavigationItemComponent } from './pages/settings/settings-navigation/settings-navigation-item/settings-navigation-item.component';
+import { AdressesSettingsComponent } from './pages/settings/adresses-settings/adresses-settings.component';
+import { SecurityLogComponent } from './pages/settings/security-log/security-log.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +63,8 @@ import { SettingsNavigationItemComponent } from './pages/settings/settings-navig
     NavigationDropdownMenuComponent,
     ClickOutsideDirective,
     SettingsNavigationItemComponent,
+    AdressesSettingsComponent,
+    SecurityLogComponent,
   ],
   imports: [
     BrowserModule,

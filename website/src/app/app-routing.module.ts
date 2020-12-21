@@ -10,6 +10,11 @@ import { DedicatedServerComponent } from './pages/dedicated-server/dedicated-ser
 import { CartComponent } from './pages/cart/cart.component';
 import { AccountComponent } from './pages/account/account.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { BillingSettingsComponent } from './pages/settings/billing-settings/billing-settings.component';
+import { SecuritySettingsComponent } from './pages/settings/security-settings/security-settings.component';
+import { AccountSettingsComponent } from './pages/settings/account-settings/account-settings.component';
+import { AdressesSettingsComponent } from './pages/settings/adresses-settings/adresses-settings.component';
+import { SecurityLogComponent } from './pages/settings/security-log/security-log.component';
 
 const routes: Routes = [
   {path: 'cloud', component: CloudComponent},
@@ -20,7 +25,17 @@ const routes: Routes = [
   //{path: 'news', component: },
   {path: 'account', component: AccountComponent},
   {path: 'cart', component: CartComponent},
-  {path: 'settings', component: SettingsComponent},
+  {
+    path: 'settings', 
+    component: SettingsComponent,
+    children: [
+      {path: 'account', component: AccountSettingsComponent},
+      {path: 'security', component: SecuritySettingsComponent},
+      {path: 'addresses', component: AdressesSettingsComponent},
+      {path: 'billing', component: BillingSettingsComponent},
+      {path: 'security-log', component: SecurityLogComponent}
+    ]
+  },
   {path: '', component: HomeComponent},
   {path: '**', component: NotFoundComponent},
 ];
