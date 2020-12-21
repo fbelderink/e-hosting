@@ -61,7 +61,9 @@ namespace Backend
 
             app.Use(async (context, next) =>
             {
-                Console.WriteLine($"[{context.Connection.RemoteIpAddress}:{context.Connection.RemotePort}] | {context.Request.Path}");
+                if(!context.Request.Method.Equals("OPTIONS")){
+                    Console.WriteLine($"[{context.Connection.RemoteIpAddress}:{context.Connection.RemotePort}] | {context.Request.Path}");
+                }
                 await next.Invoke();
             });
             //app.UseHttpsRedirection(); !IMPORTANT
