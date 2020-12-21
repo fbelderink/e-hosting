@@ -1,5 +1,3 @@
-import { HttpHeaders } from '@angular/common/http';
-import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthenticationRequest, AuthenticationResponse, ChangePasswordRequest } from '../models/Authentication';

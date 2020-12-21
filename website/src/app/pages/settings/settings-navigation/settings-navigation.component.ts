@@ -7,7 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsNavigationComponent implements OnInit {
 
-  constructor() { }
+  public items = [
+    { iconName: "dns", displayName: "Profil" },
+    { iconName: "dns", displayName: "Konto" },
+    { iconName: "dns", displayName: "Sicherheit" }, 
+    { iconName: "dns", displayName: "Adressen" },
+    { iconName: "dns", displayName: "Zahlungen" }, 
+    { iconName: "dns", displayName: "Sicherheitsprotokoll" }
+  ];
+  
+  constructor() {
+
+    for(let item of this.items){
+      console.log(item.displayName);
+    }
+  }
 
   ngOnInit(): void {
   }

@@ -15,11 +15,11 @@
 }
 
 ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar{
-    background-color: #FFF;
+    background-color: var(--white);
 }
 
 ::ng-deep .mat-tab-list .mat-tab-label{
-    color: #FFF;
+    color: var(--white);
 }
 
 .form-container {
@@ -31,7 +31,7 @@
 
 .btn-submit {
     background-color: #28a745;
-    color: #FFF;
+    color: var(--white);
     font-size: 20px;
     font-style: normal;
     cursor: pointer;

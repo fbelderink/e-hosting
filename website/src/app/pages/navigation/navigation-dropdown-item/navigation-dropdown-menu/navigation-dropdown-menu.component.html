@@ -1,8 +1,11 @@
 <div id="dropdown-server" class="dropdown-menu pl-30 pb-30 pt-6" *ngIf="this.isExpanded">
     <ul class="list-style-none">
       <li *ngFor="let item of this.navigationItems">
-        <a class="d-flex flex-items-center mt-16 tsop-hover"><i
-          class="material-icons-outlined mr-6">{{ item.iconName }}</i>{{ item.displayName }}</a>
+        <a [routerLink]="item.routerLink" routerLinkActive="active"
+        class="d-flex flex-items-center mt-16 tsop-hover">
+        <i class="material-icons-outlined mr-6">
+          {{ item.iconName }}</i>
+          {{ item.displayName }}</a>
       </li>
     </ul>
   </div>

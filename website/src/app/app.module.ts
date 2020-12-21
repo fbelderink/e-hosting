@@ -33,6 +33,7 @@ import { NavigationDropdownMenuComponent } from './pages/navigation/navigation-d
 
 import { TokenUpdateService } from './services/token-update.service';
 import { ClickOutsideDirective } from './directives/click-outside-directive';
+import { SettingsNavigationItemComponent } from './pages/settings/settings-navigation/settings-navigation-item/settings-navigation-item.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ClickOutsideDirective } from './directives/click-outside-directive';
     NavigationDropdownItemComponent,
     NavigationDropdownMenuComponent,
     ClickOutsideDirective,
+    SettingsNavigationItemComponent,
   ],
   imports: [
     BrowserModule,

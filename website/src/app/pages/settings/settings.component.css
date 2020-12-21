@@ -1,0 +1,24 @@
+.banner-background {
+    background: var(--green);
+    height: 56px;
+    width: 100%;
+    position: absolute;
+    z-index: -10;
+}
+
+@media (min-width:1280px){
+    .banner-background {
+        height: 72px;
+    }
+}
+
+.container{
+    min-height: 100vh;
+    padding-top: 100px;
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    align-items: center;
+    justify-content: start;
+    align-self: center;
+}

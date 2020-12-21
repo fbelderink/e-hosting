@@ -1,7 +1,7 @@
 .dropdown-menu {
     position: fixed;
-    background: #FFF;
-    color: #000;
+    background: var(--white);
+    color: var(--black);
     display: block;
     width: 250px;
     border-radius: 10px;

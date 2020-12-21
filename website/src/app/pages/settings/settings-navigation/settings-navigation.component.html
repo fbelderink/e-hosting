@@ -1,8 +1,11 @@
-<div class="container">
+<div>
     <nav>
-        <ul>
-            <li>
-                <p>test</p>
+        <ul class="list-style-none">
+            <li class="mb-16" *ngFor="let item of this.items">
+                <app-settings-navigation-item
+                [displayName]="item.displayName"
+                [iconName]="item.iconName">
+                </app-settings-navigation-item>
             </li>
         </ul>
     </nav>

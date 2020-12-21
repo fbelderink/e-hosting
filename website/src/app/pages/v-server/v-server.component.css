@@ -83,7 +83,7 @@
 }
 
 .text-white {
-    color: #FFF;
+    color: var(--white);
 }
 
 .center-text {

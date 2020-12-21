@@ -32,11 +32,11 @@
 .title {
     font-size: 25px;
     margin: 15px;
-    color: #FFF;
+    color: var(--white);
 }
 
 .form {
-    background-color: #FFF;
+    background-color: var(--white);
     padding: 20px 30px;
     border-radius: 0px 0px 5px 5px;
 }
@@ -61,7 +61,7 @@
 
 .btn-submit {
     background-color: #28a745;
-    color: #FFF;
+    color: var(--white);
     width: 100%;
     font-weight: 400;
     font-size: 20px;

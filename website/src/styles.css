@@ -12,3 +12,10 @@ body {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+    --green:#36bf5a;
+    --white: #FFFFFF;
+    --black: #000000;
+    --grey: #CCCCCC;
+}

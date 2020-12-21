@@ -1,5 +1,5 @@
 .body-start {
-    background-color: #36bf5a;
+    background-color: var(--green);
     background-image: url('../../../assets/scalableVectorGraphics/navbar/circuit-board.svg')
 }
 
