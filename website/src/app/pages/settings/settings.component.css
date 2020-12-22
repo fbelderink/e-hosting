@@ -19,6 +19,6 @@
     display: flex;
     flex-flow: row;
     align-items: flex-start;
-    justify-content: start;
+    justify-content: flex-start;
     align-self: center;
 }

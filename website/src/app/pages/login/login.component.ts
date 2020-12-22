@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.refreshAccessToken()
       .subscribe(
         data => {
-          console.log("data");
+          console.log(data);
           localStorage.setItem("accessToken", data["accessToken"]);
           this.router.navigate(['account']);
         },

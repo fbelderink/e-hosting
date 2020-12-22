@@ -1,1 +1,39 @@
-<p>security-settings works!</p>
+<div class="header-box">
+    <h1 class="heading-text">
+        Sicherheit
+    </h1>
+</div>
+<div class="sub-header-box">
+    <form [formGroup]="changePasswordForm" (ngSubmit)="onSubmitPasswordForm()">
+        <h2 class="sub-heading-text">Passwort ändern</h2>
+        <div class="form">
+            <label class="form-input-label">Aktuelles Passwort</label>
+            <input #currentPassword type="password" formControlName="currentPassword" 
+            [class]="!this.changePasswordInputsValid[0] ? 'input-border-error' : ''">
+        </div>
+        <div class="form">
+            <label class="form-input-label">Neues Passwort</label>
+            <input 
+            #newPassword type="password" formControlName="newPassword" 
+            [class]="!this.changePasswordInputsValid[1] ? 'input-border-error' : ''"
+            [placeholder]="!this.changePasswordInputsValid[1] ? '' : ''"
+            >
+        </div>
+        <div class="form">
+            <label class="form-input-label">Neues Passwort bestätigen</label>
+            <input 
+            #confirmNewPassword type="password" formControlName="confirmNewPassword" 
+            [class]="!this.changePasswordInputsValid[2] ? 'input-border-error' : ''"
+            >
+        </div>
+        <div>
+            <button class="btn-submit">Aktualisieren</button>
+        </div>
+    </form>
+</div>
+<div class="sub-header-box">
+    <h2 class="sub-heading-text">Zwei-Faktor Authentifizierung</h2>
+</div>
+<div class="sub-header-box">
+    <h2 class="sub-heading-text">Sitzungen</h2>
+</div>

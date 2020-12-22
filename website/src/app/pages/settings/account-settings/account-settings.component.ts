@@ -21,7 +21,7 @@ export class AccountSettingsComponent implements OnInit {
     });
 
     this.identificationForm = this.formBuilder.group({
-      email: ['', Validators.email],
+      email: ['', Validators.compose([Validators.email, Validators.required])],
       mobile_number: ['']
     })
   }
@@ -35,10 +35,8 @@ export class AccountSettingsComponent implements OnInit {
 
   onSubmitIdentification() {
     console.log("submit");
-    if (this.identificationForm.value.email !== null || this.identificationForm.value.mobile_number !== null) {
-      if (this.identificationForm.valid) {
-        console.log("valid")
-      }
+    if (this.identificationForm.valid) {
+      console.log("valid")
     }
   }
 
