@@ -90,8 +90,8 @@ namespace Backend.Controllers
         [HttpPost("refreshAccessToken")]
         public async Task<ActionResult<AuthenticationResponse>> GetRefreshToken() {
             string RefreshToken = Request.Cookies["RefreshToken"];
-            
-            if(!this.tokenHandler.ValidateToken(RefreshToken)){
+
+            if(String.IsNullOrEmpty(RefreshToken) || !this.tokenHandler.ValidateToken(RefreshToken)){
                 throw new ApiException(401, "Invalid RefreshToken");
             }
             
