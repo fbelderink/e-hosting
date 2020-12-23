@@ -43,7 +43,7 @@
 
 .note {
     display: flex;
-    max-width: 440px;
+    max-width: 450px;
     word-wrap: break-word;
     margin: 5px 0px;
 }

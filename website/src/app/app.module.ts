@@ -36,6 +36,7 @@ import { ClickOutsideDirective } from './directives/click-outside-directive';
 import { SettingsNavigationItemComponent } from './pages/settings/settings-navigation/settings-navigation-item/settings-navigation-item.component';
 import { AdressesSettingsComponent } from './pages/settings/adresses-settings/adresses-settings.component';
 import { SecurityLogComponent } from './pages/settings/security-log/security-log.component';
+import { ErrorBoxComponent } from './components/error-box/error-box.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { SecurityLogComponent } from './pages/settings/security-log/security-log
     SettingsNavigationItemComponent,
     AdressesSettingsComponent,
     SecurityLogComponent,
+    ErrorBoxComponent,
   ],
   imports: [
     BrowserModule,

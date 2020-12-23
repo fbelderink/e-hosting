@@ -1,8 +1,5 @@
 <div class="container">
-    <div class="error-box" *ngIf="showError">
-        {{ error }}
-        <i class="material-icons-outlined close-icon" (click)="onCloseErrorBox()">close</i>
-    </div>
+    <app-error-box [(showError)]="this.showError" [error]="this.error"></app-error-box>
     <div class="header">
         <label class="title">
             Sign In

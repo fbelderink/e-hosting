@@ -1,0 +1,4 @@
+<div [class]="'error-box ' + (this.bright_color_scheme ? 'error-box-bright' : '')" *ngIf="showError">
+    {{ error }}
+    <i class="material-icons-outlined close-icon" (click)="onCloseErrorBox()">close</i>
+</div>

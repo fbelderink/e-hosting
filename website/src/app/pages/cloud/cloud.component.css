@@ -20,6 +20,7 @@
 }
 
 .btn-start {
+    color: var(--white);
     background: #1976d2;
     padding: 10px 20px;
     border-radius: 2rem;
