@@ -34,7 +34,7 @@ namespace Backend
                     options.Limits.MaxRequestBodySize = 900000001;
                 })
                 .Build();
-            PostBuild(host);
+            //PostBuild(host);
             return host;
         }
 
@@ -61,7 +61,8 @@ namespace Backend
 
             app.Use(async (context, next) =>
             {
-                if(!context.Request.Method.Equals("OPTIONS")){
+                if (!context.Request.Method.Equals("OPTIONS"))
+                {
                     Console.WriteLine($"[{context.Connection.RemoteIpAddress}:{context.Connection.RemotePort}] | {context.Request.Path}");
                 }
                 await next.Invoke();
@@ -74,8 +75,18 @@ namespace Backend
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseCors("AllowSpecificOrigin");
-            
+
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+            AuthenticationService authenticationService = app.ApplicationServices.GetRequiredService<AuthenticationService>();
+            try {
+                authenticationService.Database.Migrate();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Failed to establish connection with " + Configuration.GetConnectionString("AuthenticationConnection"));
+                Console.WriteLine(e);
+            }
         }
 
         #region Dependency Injections
@@ -141,11 +152,10 @@ namespace Backend
 
         #endregion
 
-        private void PostBuild(IWebHost webHost)
+        /*private void PostBuild(IWebHost webHost)
         {
             AuthenticationService authenticationService = webHost.Services.GetRequiredService<AuthenticationService>();
-            authenticationService.Database.EnsureCreated();
             authenticationService.Database.Migrate();
-        }
+        }*/
     }
 }
