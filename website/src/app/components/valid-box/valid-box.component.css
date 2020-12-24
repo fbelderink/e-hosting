@@ -1,0 +1,23 @@
+.valid-box {
+    display: flex;
+    flex-flow: row;
+    border-radius: 5px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 15px 20px;
+    color: #24292e;
+    background-color: var(--red-error-box-dark);/*rgba(217, 171, 176, 1);*/
+    border: 1px solid var(--red-error-border-dark);
+}
+
+.valid-box-bright {
+    background-color: var(--red-error-box-bright)!important;
+    border: 1px solid var(--red-error-border-bright)!important;
+}
+
+.close-icon {
+    color: var(--red-error);
+    opacity: 0.4;
+    cursor: pointer;
+}

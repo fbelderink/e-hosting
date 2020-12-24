@@ -1,0 +1,4 @@
+<div [class]="'valid-box ' + (this.bright_color_scheme ? 'valid-box-bright' : '')" *ngIf="showValid">
+    {{ valid_text }}
+    <i class="material-icons-outlined valid-icon" (click)="onCloseValidBox()">close</i>
+</div>

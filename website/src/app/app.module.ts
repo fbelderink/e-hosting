@@ -37,6 +37,8 @@ import { SettingsNavigationItemComponent } from './pages/settings/settings-navig
 import { AdressesSettingsComponent } from './pages/settings/adresses-settings/adresses-settings.component';
 import { SecurityLogComponent } from './pages/settings/security-log/security-log.component';
 import { ErrorBoxComponent } from './components/error-box/error-box.component';
+import { ValidBoxComponent } from './components/valid-box/valid-box.component';
+import { ChangepwComponent } from './pages/settings/security-settings/changepw/changepw.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,8 @@ import { ErrorBoxComponent } from './components/error-box/error-box.component';
     AdressesSettingsComponent,
     SecurityLogComponent,
     ErrorBoxComponent,
+    ValidBoxComponent,
+    ChangepwComponent,
   ],
   imports: [
     BrowserModule,

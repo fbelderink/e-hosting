@@ -8,21 +8,21 @@ import { RestApiService } from './rest-api.service';
 })
 
 export class AuthenticationService {
-    constructor(private readonly rest: RestApiService){}
+    constructor(private readonly rest: RestApiService) { }
 
-    public signup(req : AuthenticationRequest) : Observable<AuthenticationResponse> {
+    public signup(req: AuthenticationRequest): Observable<AuthenticationResponse> {
         return this.rest.post<AuthenticationResponse>("/signup", req);
     }
 
-    public login(req : AuthenticationRequest) : Observable<AuthenticationResponse> {
-        return this.rest.post<AuthenticationResponse>("/login", req)
+    public login(req: AuthenticationRequest): Observable<AuthenticationResponse> {
+        return this.rest.post<AuthenticationResponse>("/login", req);
     }
 
-    public refreshAccessToken() : Observable<AuthenticationResponse>{
+    public refreshAccessToken(): Observable<AuthenticationResponse> {
         return this.rest.post<AuthenticationResponse>("/refreshAccessToken", null);
     }
 
-    public changePassword(req : ChangePasswordRequest){
-        this.rest.post("/changepw", req)
-    } 
+    public changePassword(req: ChangePasswordRequest) : Observable<unknown>{
+        return this.rest.post("/changepw", req);
+    }
 }

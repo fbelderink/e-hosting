@@ -1,0 +1,55 @@
+<div class="sub-header-box">
+    <form [formGroup]="changePasswordForm" (ngSubmit)="onSubmitPasswordForm()">
+        <h2 class="sub-heading-text">Passwort ändern</h2>
+        <div class="max-width-450">
+            <app-valid-box [(showValid)]="this.showValid" [valid_text]="this.valid_text" [bright_color_scheme]="true"></app-valid-box>
+            <app-error-box [(showError)]="this.showError" [error]="this.error" [bright_color_scheme]="true">
+            </app-error-box>
+        </div>
+        <div class="form">
+            <label class="form-input-label">Aktuelles Passwort</label>
+            <div class="input-container">
+                <input #currentPassword type="password" formControlName="currentPassword"
+                (ngModelChange)="onChangeCurrentPassword($event)">
+                <i class="material-icons visibility-icon"
+                (click)="onChangeVisibilityCurrentPassword()">
+                {{!this.visibilityCurrentPassword ? 'visibility' : 'visibility_off'}}</i>
+            </div>
+        </div>
+        <div class="form">
+            <label class="form-input-label">Neues Passwort</label>
+            <div class="input-container">
+                <input #newPassword type="password" formControlName="newPassword"
+                [class]="'input-new ' + (this.changePasswordInputsValid[1] != null ? this.changePasswordInputsValid[1] ? 'input-valid' : 'input-error' : '')"
+                (ngModelChange)="onCheckNewPassword()">
+                <i class="material-icons visibility-icon"
+                (click)="onChangeVisibilityNewPassword()">
+                {{!this.visibilityNewPassword ? 'visibility' : 'visibility_off'}}</i>
+            </div>
+        </div>
+        <div class="form">
+            <label class="form-input-label">Neues Passwort bestätigen</label>
+            <div class="input-container">
+                <input #confirmNewPassword type="password" formControlName="confirmNewPassword"
+                [class]="'input-new ' + (this.changePasswordInputsValid[2] != null ? this.changePasswordInputsValid[2] ? 'input-valid' : 'input-error' : '')"
+                (ngModelChange)="onCheckConfirmNewPassword(600)">
+                <i class="material-icons visibility-icon" 
+                (click)="onChangeVisibilityConfirmNewPassword()">
+                {{!this.visibilityConfirmNewPassword ? 'visibility' : 'visibility_off'}}</i>
+            </div>
+        </div>
+        <p class="note">
+            <span>Ihr Passwort muss</span>
+            <span [class]="this.passwordFifteen != null ? this.passwordFifteen ? 'text-valid':'text-error':''"> mindestens 15 Buchstaben</span>
+            <span> ODER</span>
+            <span [class]="this.passwordEight != null ? this.passwordEight ? 'text-valid':'text-error':''"> immerhin 8 Buchstaben,</span> 
+            <span [class]="this.passwordNumber != null ? this.passwordNumber ? 'text-valid':'text-error':''"> mindestestens eine Zahl</span> 
+            <span> und</span> 
+            <span [class]="this.passwordUpperCase != null ? this.passwordUpperCase ? 'text-valid':'text-error':''"> mindestens einen Großbuchstaben beinhalten.</span>
+        </p>
+        <div>
+            <button class="btn-submit" [disabled]="this.submitPasswordButtonDisabled">Aktualisieren</button>
+            <span><a href="https://github.com/settings/security">Passwort vergessen?</a></span>
+        </div>
+    </form>
+</div>
