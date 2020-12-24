@@ -78,11 +78,11 @@ namespace Backend.Services
             Authentication authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Uid.ToString() == uid);
             
             if(authentication == null){
-                throw new ApiException(404, "Account does not exist!");
+                throw new ApiException(404, "Ihr Benutzerkonto kann nicht gefunden werden!");
             }
 
             if(authentication.Password != HashPassword(oldPassword, authentication.Salt)){
-                throw new ApiException(401, "Wrong Password!");
+                throw new ApiException(401, "Ihr aktuelles Passwort ist falsch!");
             }
 
             authentication.Password = HashPassword(newPassword, authentication.Salt);

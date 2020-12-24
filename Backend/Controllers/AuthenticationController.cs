@@ -80,7 +80,7 @@ namespace Backend.Controllers
         public async Task ChangePassword(ChangePasswordRequest request) {
             string AccessToken = request.AccessToken; 
             if(!this.tokenHandler.ValidateToken(AccessToken)){
-                throw new ApiException(401, "Invalid RefreshToken");
+                throw new ApiException(401, "Passwort kann gerade leider nicht geändert werden");
             }
             IEnumerable<Claim> claims = this.tokenHandler.getClaims(AccessToken);
             string uid = claims.Where(c => c.Type == "Uid").FirstOrDefault().Value;
