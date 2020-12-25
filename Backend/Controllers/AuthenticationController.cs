@@ -79,8 +79,10 @@ namespace Backend.Controllers
         [HttpPost("changepw")]
         public async Task ChangePassword(ChangePasswordRequest request) {
             string AccessToken = request.AccessToken; 
-            if(!this.tokenHandler.ValidateToken(AccessToken)){
-                throw new ApiException(401, "Passwort kann gerade leider nicht geändert werden");
+            Console.WriteLine(AccessToken);
+            Console.WriteLine(request.ToString());
+            if(String.IsNullOrEmpty(AccessToken) || !this.tokenHandler.ValidateToken(AccessToken)){
+                throw new ApiException(401, "Invalid AccessToken");
             }
             IEnumerable<Claim> claims = this.tokenHandler.getClaims(AccessToken);
             string uid = claims.Where(c => c.Type == "Uid").FirstOrDefault().Value;
@@ -94,13 +96,16 @@ namespace Backend.Controllers
             if(String.IsNullOrEmpty(RefreshToken) || !this.tokenHandler.ValidateToken(RefreshToken)){
                 throw new ApiException(401, "Invalid RefreshToken");
             }
-            
             IEnumerable<Claim> claims = this.tokenHandler.getClaims(RefreshToken);
             string uid = claims.Where(c => c.Type == "Uid").FirstOrDefault().Value;
             string count = claims.Where(c => c.Type == "Count").FirstOrDefault().Value; 
 
-            var claimsAccess = await this.authenticationService.RefreshAccessToken(uid, count);
+
+            var claimsAccess = await this.authenticationService.RefreshAccessToken(uid, count); //problem
+
             var accessToken = this.tokenHandler.GenerateToken(claimsAccess, TimeSpan.FromMinutes(30));
+
+            Console.WriteLine(2);
 
             return new AuthenticationResponse
             {
