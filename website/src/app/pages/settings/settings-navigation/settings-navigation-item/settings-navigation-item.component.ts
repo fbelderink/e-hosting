@@ -14,9 +14,6 @@ export class SettingsNavigationItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.iconName);
-    console.log(this.displayName);
-    console.log(this.routerLink);
   }
 
 }

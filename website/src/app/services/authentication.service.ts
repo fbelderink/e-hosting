@@ -18,8 +18,8 @@ export class AuthenticationService {
         return this.rest.post<AuthenticationResponse>("/login", req);
     }
 
-    public refreshAccessToken(): Observable<AuthenticationResponse> {
-        return this.rest.post<AuthenticationResponse>("/refreshAccessToken", null);
+    public refreshAccessToken(): Observable<any> {
+        return this.rest.post<AuthenticationResponse>("/refreshAccessToken", {});
     }
 
     public changePassword(req: ChangePasswordRequest) : Observable<unknown>{

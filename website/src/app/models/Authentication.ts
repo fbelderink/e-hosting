@@ -1,3 +1,5 @@
+import { HttpEvent } from "@angular/common/http";
+
 export interface AuthenticationRequest {
     email : string,
     password : string,

@@ -16,10 +16,6 @@ export class SettingsNavigationComponent implements OnInit {
   ];
   
   constructor() {
-
-    for(let item of this.items){
-      console.log(item.displayName);
-    }
   }
 
   ngOnInit(): void {

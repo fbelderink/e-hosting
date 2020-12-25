@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '@app/services/authentication.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-changepw',
@@ -169,13 +170,12 @@ export class ChangepwComponent implements OnInit {
       newPassword: this.newPasswordInput.nativeElement.value,
       AccessToken: localStorage.getItem('accessToken')
     }
-    this.changePasswordForm.get('currentPassword').setValue('')
-    this.changePasswordForm.get('newPassword').setValue('')
-    this.changePasswordForm.get('confirmNewPassword').setValue('')
+    
+    this.resetUI();
+
     this.authenticationService.changePassword(req)
       .subscribe(
         data => {
-          console.log("data");
           this.valid_text = "Ihr Passwort wurde erfolgreich geändert!";
           this.showValid = true;
         },
@@ -184,6 +184,16 @@ export class ChangepwComponent implements OnInit {
           this.showError = true;
         }
       );
+  }
+
+  resetUI(){
+    this.changePasswordForm.get('currentPassword').setValue('')
+    this.changePasswordForm.get('newPassword').setValue('')
+    this.changePasswordForm.get('confirmNewPassword').setValue('')
+
+    this.visibilityCurrentPassword = false;
+    this.visibilityNewPassword = false;
+    this.visibilityConfirmNewPassword = false;
   }
 
 }

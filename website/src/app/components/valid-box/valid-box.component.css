@@ -16,7 +16,7 @@
     border: 1px solid var(--red-error-border-bright)!important;
 }
 
-.close-icon {
+.valid-icon {
     color: var(--red-error);
     opacity: 0.4;
     cursor: pointer;
