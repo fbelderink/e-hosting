@@ -44,8 +44,8 @@ namespace Backend.Controllers
 
             var accessToken = this.tokenHandler.GenerateToken(claimsAccess, TimeSpan.FromMinutes(30));
             var refreshToken = this.tokenHandler.GenerateToken(claimsRefresh, TimeSpan.FromDays(60));
-                        
-            var opt  = new CookieOptions();
+
+            var opt = new CookieOptions();
             opt.HttpOnly = true;
             opt.IsEssential = true;
             opt.SameSite = SameSiteMode.Strict;
@@ -58,13 +58,14 @@ namespace Backend.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<AuthenticationResponse>> Login(AuthenticationRequest request){
+        public async Task<ActionResult<AuthenticationResponse>> Login(AuthenticationRequest request)
+        {
             var (claimsAccess, claimsRefresh, authentication) = await this.authenticationService.Authenticate(request.Email, request.Password);
-            
+
             var accessToken = this.tokenHandler.GenerateToken(claimsAccess, TimeSpan.FromMinutes(30));
             var refreshToken = this.tokenHandler.GenerateToken(claimsRefresh, TimeSpan.FromDays(60));
 
-            var opt  = new CookieOptions();
+            var opt = new CookieOptions();
             opt.HttpOnly = true;
             opt.IsEssential = true;
             opt.SameSite = SameSiteMode.Strict;
@@ -76,29 +77,52 @@ namespace Backend.Controllers
             };
         }
 
+        [HttpGet("verifySession")]
+        public async Task<ActionResult<AuthenticationResponse>> VerifySession()
+        {
+            string RefreshToken = Request.Cookies["RefreshToken"];
+            if(String.IsNullOrEmpty(RefreshToken) || !this.tokenHandler.ValidateToken(RefreshToken)){
+                throw new ApiException(401, "Invalid Session!");
+            }
+
+            IEnumerable<Claim> claimsRefresh = this.tokenHandler.getClaims(RefreshToken);
+            ClaimsIdentity claimsAccess = await this.authenticationService.VerifySession(claimsRefresh);
+
+            string accessToken = this.tokenHandler.GenerateToken(claimsAccess, TimeSpan.FromMinutes(30));
+            
+            return new AuthenticationResponse
+            {
+                AccessToken = accessToken
+            };
+        }
+
         [HttpPost("changepw")]
-        public async Task ChangePassword(ChangePasswordRequest request) {
-            string AccessToken = request.AccessToken; 
+        public async Task ChangePassword(ChangePasswordRequest request)
+        {
+            string AccessToken = request.AccessToken;
             Console.WriteLine(AccessToken);
             Console.WriteLine(request.ToString());
-            if(String.IsNullOrEmpty(AccessToken) || !this.tokenHandler.ValidateToken(AccessToken)){
+            if (String.IsNullOrEmpty(AccessToken) || !this.tokenHandler.ValidateToken(AccessToken))
+            {
                 throw new ApiException(401, "Invalid AccessToken");
             }
             IEnumerable<Claim> claims = this.tokenHandler.getClaims(AccessToken);
             string uid = claims.Where(c => c.Type == "Uid").FirstOrDefault().Value;
-            await this.authenticationService.ChangePassword(uid ,request.OldPassword, request.NewPassword);
+            await this.authenticationService.ChangePassword(uid, request.OldPassword, request.NewPassword);
         }
 
-        [HttpPost("refreshAccessToken")]
-        public async Task<ActionResult<AuthenticationResponse>> GetRefreshToken() {
+        [HttpGet("refreshAccessToken")]
+        public async Task<ActionResult<AuthenticationResponse>> GetRefreshToken()
+        {
             string RefreshToken = Request.Cookies["RefreshToken"];
 
-            if(String.IsNullOrEmpty(RefreshToken) || !this.tokenHandler.ValidateToken(RefreshToken)){
+            if (String.IsNullOrEmpty(RefreshToken) || !this.tokenHandler.ValidateToken(RefreshToken))
+            {
                 throw new ApiException(401, "Invalid RefreshToken");
             }
             IEnumerable<Claim> claims = this.tokenHandler.getClaims(RefreshToken);
             string uid = claims.Where(c => c.Type == "Uid").FirstOrDefault().Value;
-            string count = claims.Where(c => c.Type == "Count").FirstOrDefault().Value; 
+            string count = claims.Where(c => c.Type == "Count").FirstOrDefault().Value;
 
 
             var claimsAccess = await this.authenticationService.RefreshAccessToken(uid, count); //problem

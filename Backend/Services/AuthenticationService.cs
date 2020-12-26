@@ -5,6 +5,8 @@ using Backend.Models;
 using System;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using System.Security.Cryptography;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Backend.Services
 {
@@ -50,8 +52,9 @@ namespace Backend.Services
         public async Task<(ClaimsIdentity, ClaimsIdentity, Authentication)> Authenticate(string email, string password)
         {
             Authentication authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Email == email);
-            
-            if(authentication == null || authentication.Password != HashPassword(password, authentication.Salt)){
+
+            if (authentication == null || authentication.Password != HashPassword(password, authentication.Salt))
+            {
                 throw new ApiException(401, "Username or password wrong!");
             }
 
@@ -73,15 +76,33 @@ namespace Backend.Services
             return (claimsIdentityAccess, claimsIdentityRefresh, authentication);
         }
 
+        public async Task<ClaimsIdentity> VerifySession(IEnumerable<Claim> claims)
+        {
+            string uid = claims.Where(c => c.Type == "Uid").FirstOrDefault().Value;
+            Authentication authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Uid.ToString() == uid);
+            if (authentication == null)
+            {
+                throw new ApiException(401, "Invalid Session!");
+            }
+
+            return new ClaimsIdentity(new Claim[]
+            {
+                new Claim("Uid", uid),
+                new Claim("Role", authentication.Role.ToString())
+            });
+        }
+
         public async Task ChangePassword(string uid, string oldPassword, string newPassword)
         {
             Authentication authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Uid.ToString() == uid);
-            
-            if(authentication == null){
+
+            if (authentication == null)
+            {
                 throw new ApiException(404, "Ihr Benutzerkonto kann nicht gefunden werden!");
             }
 
-            if(authentication.Password != HashPassword(oldPassword, authentication.Salt)){
+            if (authentication.Password != HashPassword(oldPassword, authentication.Salt))
+            {
                 throw new ApiException(401, "Ihr aktuelles Passwort ist falsch!");
             }
 
@@ -93,7 +114,8 @@ namespace Backend.Services
         {
             Authentication authentication = await this.Authentications.FirstOrDefaultAsync(res => res.Uid.ToString() == uid);
 
-            if(authentication == null || !authentication.Count.ToString().Equals(count)){
+            if (authentication == null || !authentication.Count.ToString().Equals(count))
+            {
                 throw new ApiException(404, "Invalid Token");
             }
 
@@ -102,7 +124,7 @@ namespace Backend.Services
                 new Claim("Uid", authentication.Uid.ToString()),
                 new Claim("Role", authentication.Role.ToString()),
             };
-            
+
             return new ClaimsIdentity(claims);
         }
 
@@ -129,7 +151,8 @@ namespace Backend.Services
 
         public DbSet<Authentication> Authentications { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder){
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
             builder.Entity<Authentication>()
                 .HasIndex(p => p.Email)
                 .IsUnique();
