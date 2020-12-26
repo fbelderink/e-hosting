@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: var(--white);
+}
+.img {
+    border-style: none;
+}

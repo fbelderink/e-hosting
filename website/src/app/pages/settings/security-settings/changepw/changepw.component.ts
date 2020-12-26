@@ -168,7 +168,7 @@ export class ChangepwComponent implements OnInit {
     let req = {
       oldPassword: this.currentPasswordInput.nativeElement.value,
       newPassword: this.newPasswordInput.nativeElement.value,
-      AccessToken: localStorage.getItem('accessToken')
+      accessToken: localStorage.getItem('accessToken')
     }
     
     this.resetUI();

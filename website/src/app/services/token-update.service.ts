@@ -23,7 +23,7 @@ export class TokenUpdateService implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(req).pipe(
             catchError((error: HttpErrorResponse) => {
-                if (error && error.error.Code === 401) {
+                if (error && error.error.Code === 401 && Object.values(ErrorMessages).includes(error.error.Message)) {
                     if (!this.refreshAccessTokenInProgress) {
                         this.refreshAccessTokenInProgress = true;
 
@@ -55,7 +55,7 @@ export class TokenUpdateService implements HttpInterceptor {
                         );
                     }
                 } else {
-                    throwError(error);
+                    return throwError(error);
                 }
             }),
         );

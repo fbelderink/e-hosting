@@ -12,7 +12,7 @@ export interface AuthenticationResponse {
 export interface ChangePasswordRequest {
     oldPassword : string,
     newPassword : string,
-    AccessToken : string,
+    accessToken : string,
 }
 
 export enum RoleType {

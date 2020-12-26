@@ -39,6 +39,7 @@ import { SecurityLogComponent } from './pages/settings/security-log/security-log
 import { ErrorBoxComponent } from './components/error-box/error-box.component';
 import { ValidBoxComponent } from './components/valid-box/valid-box.component';
 import { ChangepwComponent } from './pages/settings/security-settings/changepw/changepw.component';
+import { NavigationAccountItemComponent } from './pages/navigation/navigation-dropdown-item/navigation-account-item/navigation-account-item.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ChangepwComponent } from './pages/settings/security-settings/changepw/c
     ErrorBoxComponent,
     ValidBoxComponent,
     ChangepwComponent,
+    NavigationAccountItemComponent,
   ],
   imports: [
     BrowserModule,

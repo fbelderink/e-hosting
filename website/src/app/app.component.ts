@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { NavigationItem } from './pages/navigation/navigation-item/navigation-item.component';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import { NavigationItem } from './pages/navigation/navigation-item/navigation-it
 })
 export class AppComponent {
   public title = 'e-hosting';
+
+  public loaded = false;
 
   public sideNavOpen: boolean;
 
@@ -21,9 +24,18 @@ export class AppComponent {
 
   @ViewChild('toggleMenu', { read: ElementRef}) toggleMenu: ElementRef;
 
-  constructor() { }
+  constructor(private readonly authenticationService : AuthenticationService) { }
 
   ngOnInit() {
+    this.authenticationService.verifySession().
+    subscribe(
+      res => {
+        this.loaded = true;
+      },
+      error => {
+        this.loaded = true;
+      }
+    )
     this.serverItems = [
       { displayName: "V-Server", iconName: "dns", routerLink: "/v-server" },
       { displayName: "Game Server", iconName: "sports_esports", routerLink: "/game-server" },

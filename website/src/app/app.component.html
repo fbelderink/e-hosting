@@ -1,38 +1,38 @@
 <!-- Toolbar -->
-<header id="header" role="banner" class="header-logged-out bg-header-transparent">
-  
-  <div class="d-flex-nav flex-items-center plr-responsive max-width-1280 horizontal-center">
-    
-    <div class="d-flex flex-justify-between flex-items-center">
-      
-      <a routerLink="/" routerLinkActive="active" aria-label="Homepage" class="mr-24 d-flex flex-items-center">
-        <img width="40" alt="Homepage"
-          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
-      </a>
+<div *ngIf="this.loaded">
+  <header id="header" role="banner" class="header-logged-out bg-header-transparent">
 
-      <!--Mobile Navbar-->
-      <div class="d-none-nav">
-        <div class="d-flex flex-items-center text-white">
-          <a routerLink="/cart" routerLinkActive="active" class="d-flex flex-items-center fw-lighter"><i
-              class="material-icons-outlined mr-6">shopping_cart</i>
-            <span class="d-none cart-with-text">Einkaufswagen</span>
-          </a>
-          <div class="d-flex flex-items-center ml-cart-responsive cursor-pointer"
-            (click)="toggleSideNav()" #toggleMenu><i class="material-icons">menu</i>
+    <div class="d-flex-nav flex-items-center plr-responsive max-width-1280 horizontal-center">
+
+      <div class="d-flex flex-justify-between flex-items-center">
+
+        <a routerLink="/" routerLinkActive="active" aria-label="Homepage" class="mr-24 d-flex flex-items-center">
+          <img width="40" alt="Homepage"
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
+        </a>
+
+        <!--Mobile Navbar-->
+        <div class="d-none-nav">
+          <div class="d-flex flex-items-center text-white">
+            <a routerLink="/cart" routerLinkActive="active" class="d-flex flex-items-center fw-lighter"><i
+                class="material-icons-outlined mr-6">shopping_cart</i>
+              <span class="d-none cart-with-text">Einkaufswagen</span>
+            </a>
+            <div class="d-flex flex-items-center ml-cart-responsive cursor-pointer" (click)="toggleSideNav()"
+              #toggleMenu><i class="material-icons">menu</i>
+            </div>
           </div>
         </div>
+
       </div>
-    
+
+      <app-navigation [serverItems]="this.serverItems" [bsItems]="this.bsItems" class="mobile-nav desktop-nav"
+        [class.d-block]="this.sideNavOpen" (clickOutside)="onClickOutsideSideNav($event)">
+      </app-navigation>
+
     </div>
 
-    <app-navigation 
-    [serverItems]="this.serverItems" [bsItems]="this.bsItems" 
-    class="mobile-nav desktop-nav" [class.d-block]="this.sideNavOpen"
-    (clickOutside)="onClickOutsideSideNav($event)">
-    </app-navigation>
+  </header>
 
-  </div>
-
-</header>
-
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>

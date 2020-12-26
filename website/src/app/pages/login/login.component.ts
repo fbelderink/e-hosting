@@ -12,25 +12,27 @@ import { AuthenticationService } from '@app/services/authentication.service';
 @Injectable()
 export class LoginComponent implements OnInit {
 
-  public loaded : boolean;
-
   constructor(
     private readonly authenticationService: AuthenticationService,
     private readonly router : Router
     ) {}
 
   async ngOnInit() {
-    this.authenticationService.refreshAccessToken()
+    if(this.authenticationService.isLoggedIn) {
+      this.router.navigate(['account']);
+    }
+    /*this.authenticationService.refreshAccessToken()
       .subscribe(
-        data => {
-          console.log(data);
-          localStorage.setItem("accessToken", data["accessToken"]);
+        res => {
+          console.log(res);
+          localStorage.setItem("accessToken", res["accessToken"]);
           this.router.navigate(['account']);
         },
-        _ => {
+        error => {
+          console.log(error);
           this.loaded = true;
         }
-      );
+      );*/
   }
 
   isValidEmail(email) {

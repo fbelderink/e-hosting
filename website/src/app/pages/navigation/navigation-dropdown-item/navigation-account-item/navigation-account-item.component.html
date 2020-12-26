@@ -1,0 +1,7 @@
+<div class="container" (click)="this.toggleExpand()">
+    <img class="avatar">
+    <i class="material-icons">{{this.isExpanded ? "expand_less" : "expand_more"}}</i>
+</div>
+<app-navigation-dropdown-menu>
+    [navigationItems]="this.navigationItems" [isExpanded]="this.isExpanded"
+</app-navigation-dropdown-menu>

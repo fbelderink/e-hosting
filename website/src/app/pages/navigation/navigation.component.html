@@ -32,11 +32,13 @@
 <!--Login and Cart for Desktop and Slider-->
 <div class="d-flex-nav flex-items-center text-white-nav mr-navmenu mr-navmenu-responsive">
     <app-navigation-item 
-    [displayName]="'Login'" [iconName]="'person'" 
-    [routerLink]="'/login'" class="fw-lighter mr-16">
-    </app-navigation-item>
-    <app-navigation-item 
     [displayName]="'Einkaufswagen'" [iconName]="'shopping_cart'" 
-    [routerLink]="'/cart'" class="fw-lighter">
+    [routerLink]="'/cart'" class="fw-lighter mr-16">
     </app-navigation-item>
+    <app-navigation-item *ngIf="!this.authenticationService.isLoggedIn"
+    [displayName]="'Login'" [iconName]="'person'" 
+    [routerLink]="'/login'" class="fw-lighter">
+    </app-navigation-item>
+    <app-navigation-account-item *ngIf="this.authenticationService.isLoggedIn">
+    </app-navigation-account-item>
 </div>
