@@ -11,12 +11,18 @@ export class NavigationDropdownMenuComponent implements OnInit {
 
   @Input() public navigationItems : NavigationItem[];
   @Input() public isExpanded : boolean;
+  
+  @Input() public boundRight = false;
+  @Input() public headerText = false;
 
-  @Output() public clickedEmitter = new EventEmitter();
-
+  @Output() public isExpandedChange = new EventEmitter<boolean>();
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  onClose(){
+    this.isExpanded = false;
+    this.isExpandedChange.emit(this.isExpanded);
   }
 
 }

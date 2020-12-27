@@ -1,11 +1,17 @@
-<div id="dropdown-server" class="dropdown-menu pl-30 pb-30 pt-6" *ngIf="this.isExpanded">
-    <ul class="list-style-none">
-      <li *ngFor="let item of this.navigationItems">
-        <a [routerLink]="item.routerLink" routerLinkActive="active"
-        class="d-flex flex-items-center mt-16 tsop-hover">
+<div [class]="'dropdown-menu ' + (this.boundRight ? 'bound-right' : '')" *ngIf="this.isExpanded">
+  <div *ngIf="this.headerText">
+    <div class="header">
+      Guten Mittag,
+      <strong>Fynn</strong>!
+    </div>
+    <app-divider></app-divider>
+  </div>
+  <ul [class]="'list-style-none ' + (!this.headerText ? 'pt-8' : '')">
+    <li *ngFor="let item of this.navigationItems">
+      <a [routerLink]="item.routerLink" routerLinkActive="active" class="d-flex flex-items-center" (click)="onClose()">
         <i class="material-icons-outlined mr-6">
           {{ item.iconName }}</i>
-          {{ item.displayName }}</a>
-      </li>
-    </ul>
-  </div>
+        {{ item.displayName }}</a>
+    </li>
+  </ul>
+</div>

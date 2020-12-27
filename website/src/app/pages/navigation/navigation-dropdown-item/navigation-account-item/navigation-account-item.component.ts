@@ -16,9 +16,11 @@ export class NavigationAccountItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
   toggleExpand(){
+    console.log("expand")
     this.isExpanded = !this.isExpanded;
     this.isExpandedChange.emit(this.isExpanded);
   }

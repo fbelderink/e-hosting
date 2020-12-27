@@ -40,6 +40,7 @@ import { ErrorBoxComponent } from './components/error-box/error-box.component';
 import { ValidBoxComponent } from './components/valid-box/valid-box.component';
 import { ChangepwComponent } from './pages/settings/security-settings/changepw/changepw.component';
 import { NavigationAccountItemComponent } from './pages/navigation/navigation-dropdown-item/navigation-account-item/navigation-account-item.component';
+import { DividerComponent } from './components/divider/divider.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { NavigationAccountItemComponent } from './pages/navigation/navigation-dr
     ValidBoxComponent,
     ChangepwComponent,
     NavigationAccountItemComponent,
+    DividerComponent,
   ],
   imports: [
     BrowserModule,

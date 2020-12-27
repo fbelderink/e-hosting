@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { NavigationItem } from './pages/navigation/navigation-item/navigation-item.component';
 import { AuthenticationService } from './services/authentication.service';
@@ -15,9 +15,6 @@ export class AppComponent {
 
   public sideNavOpen: boolean;
 
-  public serverItems: NavigationItem[];
-  public bsItems: NavigationItem[];
-
   public serverItemIsExpanded: boolean;
   public bssItemIsExpanded: boolean;
 
@@ -29,23 +26,13 @@ export class AppComponent {
   ngOnInit() {
     this.authenticationService.verifySession().
     subscribe(
-      res => {
+      _ => {
         this.loaded = true;
       },
-      error => {
+      _ => {
         this.loaded = true;
       }
     )
-    this.serverItems = [
-      { displayName: "V-Server", iconName: "dns", routerLink: "/v-server" },
-      { displayName: "Game Server", iconName: "sports_esports", routerLink: "/game-server" },
-      { displayName: "Dedizierte Server", iconName: "corporate_fare", routerLink: "/dedicated-server" },
-    ];
-
-    this.bsItems = [
-      { displayName: "Cloud", iconName: "cloud", routerLink: null },
-      { displayName: "Dedizierte Server", iconName: "corporate_fare", routerLink: null },
-    ]
   }
 /*
 this.renderer.listen('window', 'scroll', (e : Event) => {

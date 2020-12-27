@@ -39,6 +39,8 @@
     [displayName]="'Login'" [iconName]="'person'" 
     [routerLink]="'/login'" class="fw-lighter">
     </app-navigation-item>
-    <app-navigation-account-item *ngIf="this.authenticationService.isLoggedIn">
+    <app-navigation-account-item *ngIf="this.authenticationService.isLoggedIn"
+    [navigationItems]="this.accountItems" [(isExpanded)]="this.accountIsExpanded"
+    (clickOutside)="onClickOutsideAccount()">
     </app-navigation-account-item>
 </div>
